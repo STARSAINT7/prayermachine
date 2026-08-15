@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRAYER MACHINE - ThankGod Okoduwa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Imported Orbitron for strong distinct developer branding */
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@800;900&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; }
+        .heading-font { font-family: 'Cinzel', serif; }
+        .developer-font { font-family: 'Orbitron', sans-serif; }
+        
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Developer Fire Blinking & Glowing Effect */
+        .developer-fire-badge {
+            background: linear-gradient(90deg, #ff0000, #ff7300, #ffeb00, #ff0000);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+            letter-spacing: 1px;
+            animation: fireGlow 1.8s infinite alternate, fireGradient 3.5s ease infinite;
+        }
+
+        @keyframes fireGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes fireGlow {
+            0% { filter: drop-shadow(0 0 3px #ff4500) drop-shadow(0 0 8px #ff0000); }
+            100% { filter: drop-shadow(0 0 8px #ffae00) drop-shadow(0 0 18px #ff4500); }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
+
+    <!-- Header -->
+    <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-red-600 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-amber-500/20 shrink-0">
+                    <i class="fa-solid fa-bolt text-lg text-white"></i>
+                </div>
+                <div>
+                    <h1 class="heading-font text-xl md:text-2xl font-bold tracking-wider text-amber-400">PRAYER MACHINE</h1>
+                    <p class="text-xs text-slate-400">21 Powerful Decrees & Intercessions (KJV)</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Prayer Interface -->
+    <main class="max-w-3xl mx-auto px-4 py-6 flex-1 flex flex-col justify-center w-full">
+        
+        <!-- Category Selector Tabs -->
+        <div class="mb-6 overflow-x-auto pb-2 scrollbar-none">
+            <div class="flex gap-2 min-w-max" id="category-tabs">
+                <!-- Dynamic Category Buttons Inserted Here -->
+            </div>
+        </div>
+
+        <!-- Main Prayer Card Container -->
+        <div class="glass-panel rounded-2xl p-5 md:p-8 shadow-2xl relative overflow-hidden flex flex-col justify-between min-h-[460px] w-full">
+            
+            <div>
+                <!-- Embedded Developer Name & Prayer Counter within Card Bounds -->
+                <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-slate-800/80">
+                    <span class="developer-fire-badge developer-font text-xs sm:text-sm md:text-base flex items-center gap-1.5 uppercase font-black tracking-wide max-w-full truncate">
+                        <i class="fa-solid fa-fire text-xs sm:text-sm text-orange-500 animate-pulse"></i>
+                        EVANG.THANKGOD OKODUWA 🙏
+                    </span>
+                    <div id="prayer-counter" class="text-xs sm:text-sm font-bold text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20 shrink-0">
+                        1 / 21
+                    </div>
+                </div>
+
+                <!-- Category Title & KJV Scripture Header -->
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                    <span id="category-title" class="heading-font text-xs md:text-sm font-extrabold tracking-widest text-amber-400 uppercase">
+                        CATEGORY
+                    </span>
+                    <span id="scripture-ref" class="text-xs md:text-sm text-slate-400 font-semibold italic">
+                        Reference (KJV)
+                    </span>
+                </div>
+
+                <!-- Scripture Quote Display (KJV) -->
+                <div id="scripture-box" class="bg-slate-900/90 rounded-xl p-4 mb-5 border-l-4 border-amber-500 text-sm md:text-base text-slate-300 italic shadow-inner">
+                    "<span id="scripture-text">Verse loading...</span>"
+                </div>
+
+                <!-- Active Prayer Display -->
+                <div class="my-3">
+                    <div id="prayer-number" class="text-amber-500 font-bold text-base md:text-lg mb-1">
+                        PRAYER #1
+                    </div>
+                    <p id="prayer-text" class="text-base sm:text-lg md:text-xl font-medium leading-relaxed text-slate-100 transition-all duration-300">
+                        Select a category to start prayers.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Audio & Controls -->
+            <div class="pt-5 mt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3">
+                <button id="read-btn" onclick="toggleAudio()" class="flex items-center space-x-2 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 px-4 py-2.5 rounded-xl font-bold text-sm md:text-base transition-all shadow-lg shadow-amber-500/20 active:scale-95">
+                    <i id="audio-icon" class="fa-solid fa-volume-high"></i>
+                    <span id="audio-text">Listen</span>
+                </button>
+
+                <!-- Previous & Next Navigation -->
+                <div class="flex items-center space-x-2 sm:space-x-3 ml-auto">
+                    <button id="prev-btn" onclick="navigate(-1)" class="flex items-center space-x-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all border border-slate-700 disabled:opacity-40 disabled:cursor-not-allowed">
+                        <i class="fa-solid fa-chevron-left text-xs"></i>
+                        <span>Previous</span>
+                    </button>
+                    <button id="next-btn" onclick="navigate(1)" class="flex items-center space-x-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all border border-slate-700 disabled:opacity-40 disabled:cursor-not-allowed">
+                        <span>Next</span>
+                        <i class="fa-solid fa-chevron-right text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-3 text-center text-xs text-slate-500">
+        PRAYER MACHINE &bull; Programmed by ThankGod Okoduwa
+    </footer>
+
+    <!-- Script Application Logic -->
+    <script>
+        const categoriesData = [
+            {
+                id: "children",
+                name: "1. Children",
+                verseRef: "Psalm 127:3 (KJV)",
+                verseText: "Lo, children are an heritage of the LORD: and the fruit of the womb is his reward.",
+                prayers: [
+                    "O Lord, protect my children from every trap of darkness and preserve their souls from evil, in Jesus name.",
+                    "Father, grant my children spiritual wisdom, understanding, and excellent minds, in the name of Jesus.",
+                    "Every demonic agenda to corrupt the destiny of my children, be destroyed by fire, in Jesus name.",
+                    "Lord, surround my children with divine guardians and godly influencers everywhere they go, in Jesus name.",
+                    "Blood of Jesus, shield my children from sickness, accidents, and premature death, in the name of Jesus.",
+                    "Father, disconnect my children from bad company and demonic friendships, in Jesus name.",
+                    "O God, let Your Holy Spirit guide my children in all their choices and career paths, in Jesus name.",
+                    "Every ancestral power claiming ownership over my children's lives, break by fire, in Jesus name.",
+                    "Lord, sanctify the thoughts, eyes, and hearts of my children against worldliness, in Jesus name.",
+                    "Father, release upon my children the grace to fear, love, and obey You all their days, in Jesus name.",
+                    "O God, let my children excel academically, spiritually, and socially above their peers, in Jesus name.",
+                    "Every seed of rebellion, stubbornness, or addiction planted in my children's hearts, die now, in Jesus name.",
+                    "Lord, let Your glory shine upon my children; they shall not be victims of societal vices, in Jesus name.",
+                    "Father, fulfill Your divine covenant of peace and long life over every child in my home, in Jesus name.",
+                    "O Lord, grant my children emotional stability, strength, and confidence in their identity in Christ.",
+                    "Every satanic mark of delay or frustration on my children's future, be washed away by the blood of Jesus.",
+                    "Father, anoint my children for greatness; they shall be lenders and not borrowers, in Jesus name.",
+                    "Lord, let Your favor surround my children like a shield everywhere they step, in Jesus name.",
+                    "Every covenant of failure passed down to my children, break permanently today, in Jesus name.",
+                    "Father, make my children signs, wonders, and arrows in the hands of the Almighty, in Jesus name.",
+                    "Thank You Lord, for my children are blessed, protected, and destined for eternal impact. Amen."
+                ]
+            },
+            {
+                id: "youths",
+                name: "2. Youths",
+                verseRef: "1 Timothy 4:12 (KJV)",
+                verseText: "Let no man despise thy youth; but be thou an example of the believers, in word, in conversation, in charity, in spirit, in faith, in purity.",
+                prayers: [
+                    "O Lord, fire up the hearts of the youths with an unquenchable passion for Your kingdom, in Jesus name.",
+                    "Father, deliver our youths from the spirit of lukewarmness, immorality, and worldly distractions, in Jesus name.",
+                    "Every demonic trap set to destroy the vision and potential of our youths, catch fire, in Jesus name.",
+                    "Lord, grant our youths creative ideas, innovation, and wisdom to lead in their generations, in Jesus name.",
+                    "Father, break the stronghold of addiction, depression, and mental warfare off our youths, in Jesus name.",
+                    "O God, raise a generation of youths who will stand fearlessly for righteousness and truth, in Jesus name.",
+                    "Lord, connect our young people with destiny helpers and godly mentors, in Jesus name.",
+                    "Every spirit of aimlessness, confusion, and career frustration among youths, scatter, in Jesus name.",
+                    "Father, protect our youths from evil peer pressure and destructive modern trends, in Jesus name.",
+                    "O God, ignite divine visions and dreams in the hearts of our young men and women, in Jesus name.",
+                    "Lord, grant our youths financial independence through legitimate skills and divine wisdom, in Jesus name.",
+                    "Every generational altar of failure assigned against young people, crumble by fire, in Jesus name.",
+                    "Father, let Your Holy Spirit sanctify the minds, relationships, and ambitions of our youths, in Jesus name.",
+                    "O God, shield our youths from premature death, crime, and satanic recruitment, in Jesus name.",
+                    "Lord, empower our youths to take over political, economic, and spiritual spheres for Christ, in Jesus name.",
+                    "Father, heal every broken heart, disappointment, and trauma in the youth generation, in Jesus name.",
+                    "Every agenda of darkness to render our youths unproductive, be neutralized by the blood of Jesus.",
+                    "O Lord, grant our youths spiritual boldness to preach the Gospel without shame, in Jesus name.",
+                    "Father, establish our young people in faith; let them not compromise their godly heritage, in Jesus name.",
+                    "Lord, turn the energy and passion of our youths into spiritual firepower for end-time revival, in Jesus name.",
+                    "Thank You Lord, because our youths are rising as champions, leaders, and lights of the world. Amen."
+                ]
+            },
+            {
+                id: "families",
+                name: "3. Families",
+                verseRef: "Joshua 24:15 (KJV)",
+                verseText: "And if it seem evil unto you to serve the LORD, choose you this day whom ye will serve... but as for me and my house, we will serve the LORD.",
+                prayers: [
+                    "O Lord, let Your peace reign in my family and silence every storm assigned to scatter us, in the name of Jesus.",
+                    "Father, cover every member of my family with the blood of Jesus—no loss, no evil, no tragedy shall come near us.",
+                    "Every power assigned to attack the joy, unity, and progress of my family, scatter by fire, in Jesus name.",
+                    "O Lord, release Your angels to watch over my family day and night, in Jesus name.",
+                    "Blood of Jesus, break every generational curse working against my family, in the name of Jesus.",
+                    "Father, let every household wickedness rising against my family be disgraced and destroyed, in Jesus name.",
+                    "O God, restore love, unity, and understanding in my family; let every seed of division die by fire.",
+                    "Lord, heal every wounded heart and broken relationship within my family, in Jesus name.",
+                    "Every altar fighting the destiny of my family, catch fire and scatter, in Jesus name.",
+                    "O Lord, establish divine protection around my home—no sickness, no accident, no attack, in Jesus name.",
+                    "Father, bless the works of our hands; let my family experience supernatural provision and abundance.",
+                    "Every spirit of untimely death hovering around my family, return to sender, in Jesus name.",
+                    "O God, raise my family to fulfill its divine purpose; no destiny shall be aborted, in Jesus name.",
+                    "Lord, let Your resurrection power revive every good thing dying in my family—marriages, finances, dreams, and relationships.",
+                    "Every arrow of delay, stagnation, or backwardness fired into my family, backfire now, in Jesus name.",
+                    "O God, release wisdom, excellence, and favour upon the children in my family, in Jesus name.",
+                    "Every evil pattern repeating itself in my lineage—poverty, sickness, failure, marital delay—be destroyed by fire, in Jesus name.",
+                    "O Lord, protect my family members in their going out and coming in; no harm shall come near us.",
+                    "Father, let Your light shine in my family and chase away every darkness of confusion or oppression.",
+                    "O God, let my family become a home of testimonies, breakthroughs, and divine encounters, in Jesus name.",
+                    "Thank You Jesus, because my family is blessed, preserved, restored, and lifted forever. Amen."
+                ]
+            },
+            {
+                id: "marriages",
+                name: "4. Marriages",
+                verseRef: "Mark 10:9 (KJV)",
+                verseText: "What therefore God hath joined together, let not man put asunder.",
+                prayers: [
+                    "O Lord, reinforce every marital foundation with the love and truth of Your Word, in Jesus name.",
+                    "Father, silence every strange voice speaking strife, disagreement, and separation into marriages, in Jesus name.",
+                    "Every demonic third party or strange woman/man seeking to tear marriages apart, scatter by fire, in Jesus name.",
+                    "Lord, rekindle the flame of genuine love, intimacy, and romance in Christian marriages, in Jesus name.",
+                    "Every spirit of unforgiveness, bitterness, and pride in marriages, die by fire, in Jesus name.",
+                    "Father, heal every wounded spouse and restore broken trust in troubled marriages, in Jesus name.",
+                    "O Lord, grant couples the grace to communicate in wisdom, grace, and patience, in Jesus name.",
+                    "Every spiritual weapon of financial distress used to cause marital conflict, be destroyed, in Jesus name.",
+                    "Father, let every seed of divorce, separation, and legal battle in marriages be uprooted, in Jesus name.",
+                    "Lord, protect couples from evil eyes, jealousy, and malicious gossip designed to ruin unions, in Jesus name.",
+                    "Every demonic spirit of lust and infidelity operating against marriages, be bound by fire, in Jesus name.",
+                    "Father, grant waiting couples the blessing of healthy children and joyful homes, in Jesus name.",
+                    "O Lord, help husbands to love their wives selflessly and wives to respect their husbands, in Jesus name.",
+                    "Every curse of marital instability inherited from ancestral lineages, break by the blood of Jesus.",
+                    "Lord, expose and neutralize every evil counsel designed to mislead married partners, in Jesus name.",
+                    "Father, erect a wall of holy fire around marriages; let no arrow of darkness penetrate, in Jesus name.",
+                    "O God, grant couples financial breakthroughs and divine wisdom to manage their households, in Jesus name.",
+                    "Every spirit of impatience and emotional distance in marriages, be cast out, in Jesus name.",
+                    "Lord, let your peace that passes all human understanding guard every marital heart, in Jesus name.",
+                    "Father, turn every bitter marriage into a testimony of sweetness and joy, in Jesus name.",
+                    "Thank You Lord, because our marriages are built on Christ the Solid Rock and will endure forever. Amen."
+                ]
+            },
+            {
+                id: "churches",
+                name: "5. Churches",
+                verseRef: "Matthew 16:18 (KJV)",
+                verseText: "And I say also unto thee, That thou art Peter, and upon this rock I will build my church; and the gates of hell shall not prevail against it.",
+                prayers: [
+                    "O Lord, let Your Holy Fire consume every form of compromise and carnality in the Church, in Jesus name.",
+                    "Father, pour out a fresh baptism of the Holy Spirit and power upon Your Church worldwide, in Jesus name.",
+                    "Every demonic attack on spiritual leaders, pastors, and ministers, backfire by fire, in Jesus name.",
+                    "Lord, raise faithful intercessors and genuine prayer altars in every local assembly, in Jesus name.",
+                    "Father, purge the Church of false doctrines, wolf-in-sheep-clothing, and worldly schemes, in Jesus name.",
+                    "O God, bring genuine unity, love, and fellowship among denominations and believers, in Jesus name.",
+                    "Lord, let signs, wonders, and genuine miracles become the daily order in our churches, in Jesus name.",
+                    "Every power seeking to scatter or silence the growth of local churches, be disgraced, in Jesus name.",
+                    "Father, release financial abundance into the Church to fund missions and Kingdom advancement, in Jesus name.",
+                    "O Lord, protect ministers of the Gospel and their families from evil plots and scandals, in Jesus name.",
+                    "Father, let the Church remain a true refuge, healing center, and light to the lost, in Jesus name.",
+                    "Every altar of darkness established to fight the Church in any community, catch fire, in Jesus name.",
+                    "Lord, grant pastors divine wisdom, spiritual stamina, and deep revelation of Your Word, in Jesus name.",
+                    "Father, ignite a passion for soul-winning and personal evangelism in every member, in Jesus name.",
+                    "O God, silence every legal or governmental plot aimed at suppressing church worship, in Jesus name.",
+                    "Lord, remove every root of pride, competition, and rivalry among church leaders, in Jesus name.",
+                    "Father, open the doors of local assemblies to unreached souls and prodigal sons, in Jesus name.",
+                    "O Lord, raise a holy and uncompromising army of believers in these last days, in Jesus name.",
+                    "Every satanic spy or agent sent to infiltrate and destroy the church from within, be exposed, in Jesus name.",
+                    "Father, let Your presence be heavily felt in every worship gathering across the globe, in Jesus name.",
+                    "Thank You Lord, for the Church is marching on, and the gates of hell shall never prevail. Amen."
+                ]
+            },
+            {
+                id: "territories",
+                name: "6. Territories",
+                verseRef: "Psalm 24:1 (KJV)",
+                verseText: "The earth is the LORD'S, and the fulness thereof; the world, and they that dwell therein.",
+                prayers: [
+                    "O Lord, take full possession of our cities, states, and nations for Your glory, in Jesus name.",
+                    "Father, dethrone every territorial principality and ruler of darkness controlling our land, in Jesus name.",
+                    "Every altar of idolatry, witchcraft, and blood-shedding in our land, catch fire and burn to ashes.",
+                    "Lord, let the blood of Jesus cleanse our land from every innocent blood spilled upon it, in Jesus name.",
+                    "Father, break the grip of poverty, economic collapse, and inflation over our nation, in Jesus name.",
+                    "O God, arise and scatter every gang of evil men plotting civil unrest, terrorism, or war, in Jesus name.",
+                    "Lord, install righteous leaders who fear You into positions of authority across our territory, in Jesus name.",
+                    "Every demonic prince of Persia blocking territorial blessings and revivals, be overthrown, in Jesus name.",
+                    "Father, release Your angels to patrol our borders, cities, and communities day and night, in Jesus name.",
+                    "O Lord, let truth, justice, and righteousness reign supreme in our courts and government houses, in Jesus name.",
+                    "Father, heal our land from plagues, epidemics, and environmental disasters, in Jesus name.",
+                    "Every covenant made with darkness by ancestral leaders over our territory, break by the blood of Jesus.",
+                    "Lord, open the windows of heaven and shower economic and spiritual prosperity on our land, in Jesus name.",
+                    "O God, expose and dismantle all corrupt systems destroying the welfare of our citizens, in Jesus name.",
+                    "Father, let the sound of praise and salvation echo through every street and city in our nation, in Jesus name.",
+                    "Every spiritual veil of darkness keeping our territory in spiritual blindness, be torn off, in Jesus name.",
+                    "Lord, grant peaceful co-existence, security, and safety to all residents of our land, in Jesus name.",
+                    "Father, transform our territory into a fertile ground for righteous enterprise and divine visitation.",
+                    "O Lord, silence the voice of evil decrees spoken against the future of our country, in Jesus name.",
+                    "Father, let Your revival fire sweep across every corner of our territory without hindrance, in Jesus name.",
+                    "Thank You Lord, because our land is redeemed, peaceful, prosperous, and belongs to God. Amen."
+                ]
+            },
+            {
+                id: "gospel",
+                name: "7. Gospel",
+                verseRef: "Romans 1:16 (KJV)",
+                verseText: "For I am not ashamed of the gospel of Christ: for it is the power of God unto salvation to every one that believeth; to the Jew first, and also to the Greek.",
+                prayers: [
+                    "O Lord, let the light of the Gospel penetrate the darkest corners and unreached tribes of the earth, in Jesus name.",
+                    "Father, grant missionaries and evangelists divine boldness, protection, and endurance, in Jesus name.",
+                    "Every satanic barrier hindering the preaching of the Gospel, be shattered to pieces, in Jesus name.",
+                    "Lord, confirm Your Word with miraculous signs, wonders, and healings wherever the Gospel is preached.",
+                    "Father, open closed nations, restricted borders, and hostile hearts to the saving grace of Jesus, in Jesus name.",
+                    "O God, raise bold, uncompromising evangelists to proclaim Your truth in the media and public square.",
+                    "Lord, destroy every demonic ideology, philosophy, and false religion fighting the Gospel, in Jesus name.",
+                    "Father, protect frontline missionaries from violence, imprisonment, and martyrdom, in Jesus name.",
+                    "O Lord, release massive financial resources to fund worldwide evangelism and mission projects, in Jesus name.",
+                    "Father, let every soul winning effort yield lasting fruit that remains, in Jesus name.",
+                    "Lord, pour out the spirit of conviction upon sinners whenever the Gospel message is delivered, in Jesus name.",
+                    "Every demonic veil blinding the minds of unbelievers from seeing Christ's light, be removed by fire.",
+                    "O God, raise digital evangelists and creative minds to flood the internet with the Gospel, in Jesus name.",
+                    "Father, protect the Holy Bible and sound doctrine from distortion, censorship, and corruption, in Jesus name.",
+                    "Lord, let the Gospel bring deliverance, freedom, and transformation to prisoners, addicts, and the lost.",
+                    "Father, unite the body of Christ for the swift completion of the Great Commission, in Jesus name.",
+                    "O Lord, let Your Word run swiftly and be glorified in every culture and language, in Jesus name.",
+                    "Every spirit of fear or shame in believers preventing them from sharing their faith, be cast out, in Jesus name.",
+                    "Father, grant spiritual dreams and visions to those in closed countries so they may find Jesus, in Jesus name.",
+                    "O God, ignite a global passion for souls that will sweep millions into Your Kingdom, in Jesus name.",
+                    "Thank You Lord, because the Gospel is victorious, unstoppable, and saving lives every day. Amen."
+                ]
+            }
+        ];
+
+        let activePrayersList = [];
+        let currentCategoryIndex = 0;
+        let currentPrayerIndex = 0;
+        let synth = window.speechSynthesis;
+        let isSpeaking = false;
+
+        // Dynamic Elements
+        const categoryTabs = document.getElementById('category-tabs');
+        const categoryTitle = document.getElementById('category-title');
+        const scriptureRef = document.getElementById('scripture-ref');
+        const scriptureText = document.getElementById('scripture-text');
+        const prayerNumber = document.getElementById('prayer-number');
+        const prayerText = document.getElementById('prayer-text');
+        const prayerCounter = document.getElementById('prayer-counter');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const audioIcon = document.getElementById('audio-icon');
+        const audioText = document.getElementById('audio-text');
+
+        // Fisher-Yates Array Reshuffle Function
+        function shuffleArray(array) {
+            let shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        // Application Startup
+        function initApp() {
+            renderTabs();
+            loadCategory(0);
+        }
+
+        // Render Tabs Bar
+        function renderTabs() {
+            categoryTabs.innerHTML = '';
+            categoriesData.forEach((cat, index) => {
+                const button = document.createElement('button');
+                button.className = `px-4 py-2 rounded-xl text-xs md:text-sm font-semibold transition-all whitespace-nowrap border ${
+                    index === currentCategoryIndex 
+                    ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 border-amber-400 font-bold shadow-md shadow-amber-500/20' 
+                    : 'bg-slate-900 text-slate-400 border-slate-800 hover:bg-slate-800 hover:text-slate-200'
+                }`;
+                button.innerText = cat.name;
+                button.onclick = () => selectCategory(index);
+                categoryTabs.appendChild(button);
+            });
+        }
+
+        function selectCategory(index) {
+            stopAudio();
+            currentCategoryIndex = index;
+            currentPrayerIndex = 0;
+            renderTabs();
+            loadCategory(currentCategoryIndex);
+        }
+
+        function loadCategory(catIndex) {
+            const cat = categoriesData[catIndex];
+            
+            // Reshuffle prayers array for fresh session start
+            activePrayersList = shuffleArray(cat.prayers);
+            
+            categoryTitle.innerText = cat.name.toUpperCase();
+            scriptureRef.innerText = cat.verseRef;
+            scriptureText.innerText = cat.verseText;
+            updatePrayerDisplay();
+        }
+
+        function updatePrayerDisplay() {
+            stopAudio();
+            prayerNumber.innerText = `PRAYER #${currentPrayerIndex + 1}`;
+            prayerText.innerText = activePrayersList[currentPrayerIndex];
+            prayerCounter.innerText = `${currentPrayerIndex + 1} / 21`;
+
+            prevBtn.disabled = currentPrayerIndex === 0;
+            nextBtn.disabled = currentPrayerIndex === activePrayersList.length - 1;
+        }
+
+        function navigate(direction) {
+            const newIndex = currentPrayerIndex + direction;
+
+            if (newIndex >= 0 && newIndex < activePrayersList.length) {
+                currentPrayerIndex = newIndex;
+                updatePrayerDisplay();
+            }
+        }
+
+        // Audio Controls
+        function toggleAudio() {
+            if (isSpeaking) {
+                stopAudio();
+            } else {
+                speakPrayer();
+            }
+        }
+
+        function speakPrayer() {
+            if ('speechSynthesis' in window) {
+                synth.cancel();
+                const textToSpeak = prayerText.innerText;
+                const utterance = new SpeechSynthesisUtterance(textToSpeak);
+                
+                utterance.rate = 0.9;
+                utterance.pitch = 1.0;
+
+                utterance.onstart = () => {
+                    isSpeaking = true;
+                    audioIcon.className = "fa-solid fa-square text-red-950";
+                    audioText.innerText = "Stop";
+                };
+
+                utterance.onend = () => { resetAudioUI(); };
+                utterance.onerror = () => { resetAudioUI(); };
+
+                synth.speak(utterance);
+            } else {
+                alert("Text-to-speech is not supported on this device/browser.");
+            }
+        }
+
+        function stopAudio() {
+            if ('speechSynthesis' in window) {
+                synth.cancel();
+            }
+            resetAudioUI();
+        }
+
+        function resetAudioUI() {
+            isSpeaking = false;
+            audioIcon.className = "fa-solid fa-volume-high";
+            audioText.innerText = "Listen";
+        }
+
+        window.onload = initApp;
+    </script>
+</body>
+</html>
