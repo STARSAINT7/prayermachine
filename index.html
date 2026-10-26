@@ -1,152 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRAYER MACHINE DEVELOPED BY EVANG.THANKGOD OKODUWA</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Imported Orbitron for strong distinct developer branding */
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@800;900&display=swap');
-        
-        body { font-family: 'Inter', sans-serif; }
-        .heading-font { font-family: 'Cinzel', serif; }
-        .developer-font { font-family: 'Orbitron', sans-serif; }
-        
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Developer Fire Blinking & Glowing Effect */
-        .developer-fire-badge {
-            background: linear-gradient(90deg, #ff0000, #ff7300, #ffeb00, #ff0000);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 900;
-            letter-spacing: 1px;
-            animation: fireGlow 1.8s infinite alternate, fireGradient 3.5s ease infinite;
-        }
-
-        @keyframes fireGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes fireGlow {
-            0% { filter: drop-shadow(0 0 3px #ff4500) drop-shadow(0 0 8px #ff0000); }
-            100% { filter: drop-shadow(0 0 8px #ffae00) drop-shadow(0 0 18px #ff4500); }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prayer Machine - ThankGod Okoduwa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400;1,6..72,500&family=Familjen+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Stained-glass idea: every prayer group has its own jewel colour (--h) that tints the whole page. */
+:root{--h:210;--stone:#e8ecee;--ink:#101a2e;--muted:#5b6678;--gold:#b98a1f;
+  --accent:hsl(var(--h) 58% 30%);--deep:hsl(var(--h) 55% 17%);--tint:hsl(var(--h) 45% 95%);--line:hsl(var(--h) 25% 80%)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Familjen Grotesk',system-ui,sans-serif;color:var(--ink);min-height:100vh;display:flex;flex-direction:column;
+  background:linear-gradient(180deg,hsl(var(--h) 40% 90%),var(--stone) 320px);transition:background .5s}
+.wrap{width:min(760px,100% - 1.6rem);margin-inline:auto}
+header{text-align:center;padding:1.8rem 0 1rem}
+h1{font:600 clamp(2.2rem,8vw,3.4rem)/1 'Newsreader',serif;letter-spacing:-.01em;color:var(--deep)}
+.credit{display:inline-block;margin-top:.55rem;font-weight:700;font-size:.9rem;letter-spacing:.04em;
+  background:linear-gradient(90deg,#8a6112,#e3b84a,#8a6112);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:200% 0}}
+.sub{color:var(--muted);font-size:.85rem;margin-top:.2rem}
+.chips{display:flex;gap:.45rem;overflow-x:auto;padding:.5rem .1rem .8rem;scrollbar-width:none;scroll-snap-type:x proximity}
+.chips::-webkit-scrollbar{display:none}
+@media(min-width:720px){.chips{flex-wrap:wrap;justify-content:center;overflow:visible}}
+.chip{flex:none;scroll-snap-align:center;display:flex;align-items:center;gap:.45rem;cursor:pointer;font:600 .82rem 'Familjen Grotesk';
+  color:var(--ink);background:#ffffffb0;border:1px solid var(--line);border-radius:10px;padding:.5rem .8rem;transition:.2s}
+.chip i{width:.7rem;height:.7rem;border-radius:50%;background:hsl(var(--c) 60% 38%)}
+.chip:hover{background:#fff}
+.chip[aria-pressed=true]{background:hsl(var(--c) 58% 26%);border-color:transparent;color:#fff}
+.chip[aria-pressed=true] i{background:hsl(var(--c) 80% 78%)}
+button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.window{margin-top:.6rem;background:var(--tint);border:2px solid var(--accent);border-radius:170px 170px 18px 18px;
+  padding:3.2rem clamp(1.2rem,6vw,3.2rem) 1.8rem;text-align:center;box-shadow:inset 0 0 0 6px var(--tint),inset 0 0 0 7px var(--line)}
+.window .group{font-weight:700;font-size:.95rem;color:var(--accent)}
+#vtext{font:italic 400 clamp(1.25rem,3.8vw,1.6rem)/1.55 'Newsreader',serif;margin:.7rem 0 .8rem;color:var(--ink)}
+#vref{font-weight:700;font-size:.85rem;color:var(--muted)}
+.panel{margin-top:1rem;background:var(--deep);color:#f4f1e8;border-radius:18px;overflow:hidden;transition:background .5s}
+.bar{height:5px;background:#ffffff22}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#e3b84a,#fff1c2);transition:width .35s}
+.body{padding:1.6rem clamp(1.2rem,5vw,2.4rem) 1.2rem}
+#pnum{font-weight:600;font-size:.85rem;color:#e3b84a}
+#ptext{font:400 clamp(1.5rem,5vw,2.1rem)/1.45 'Newsreader',serif;margin-top:.6rem;min-height:9.5rem;transition:opacity .25s,transform .25s}
+#ptext.swap{opacity:0;transform:translateY(8px)}
+.ctrl{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:0 clamp(1.2rem,5vw,2.4rem) 1.4rem}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font:700 .92rem 'Familjen Grotesk';cursor:pointer;border-radius:12px;padding:.7rem 1.1rem;
+  border:1px solid #ffffff40;background:transparent;color:#f4f1e8;transition:.2s}
+.btn:hover:not(:disabled){background:#ffffff1c}
+.btn:disabled{opacity:.35;cursor:not-allowed}
+.btn.gold{background:#e3b84a;border-color:#e3b84a;color:#241a05}
+.btn.gold:hover:not(:disabled){background:#f1cb6a}
+.sp{margin-left:auto;display:flex;gap:.6rem}
+footer{margin-top:auto;text-align:center;padding:1.6rem 0 1.2rem;font-size:.78rem;color:var(--muted)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
+<body>
+<header class="wrap">
+  <h1>Prayer Machine</h1>
+  <span class="credit">Evang. ThankGod Okoduwa 🙏</span>
+  <p class="sub" id="sub"></p>
+</header>
 
-    <!-- Header -->
-    <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-red-600 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-amber-500/20 shrink-0">
-                    <i class="fa-solid fa-bolt text-lg text-white"></i>
-                </div>
-                <div>
-                    <h1 class="heading-font text-xl md:text-2xl font-bold tracking-wider text-amber-400">PRAYER MACHINE</h1>
-                    <p class="text-xs text-slate-400">21 Powerful Decrees & Intercessions (KJV)</p>
-                </div>
-            </div>
-        </div>
-    </header>
+<main class="wrap">
+  <nav class="chips" id="chips" aria-label="Prayer groups"></nav>
 
-    <!-- Main Prayer Interface -->
-    <main class="max-w-3xl mx-auto px-4 py-6 flex-1 flex flex-col justify-center w-full">
-        
-        <!-- Category Selector Tabs -->
-        <div class="mb-6 overflow-x-auto pb-2 scrollbar-none">
-            <div class="flex gap-2 min-w-max" id="category-tabs">
-                <!-- Dynamic Category Buttons Inserted Here -->
-            </div>
-        </div>
+  <section class="window" aria-live="polite">
+    <div class="group" id="gname"></div>
+    <p id="vtext"></p>
+    <div id="vref"></div>
+  </section>
 
-        <!-- Main Prayer Card Container -->
-        <div class="glass-panel rounded-2xl p-5 md:p-8 shadow-2xl relative overflow-hidden flex flex-col justify-between min-h-[460px] w-full">
-            
-            <div>
-                <!-- Embedded Developer Name & Prayer Counter within Card Bounds -->
-                <div class="flex flex-wrap items-center justify-between gap-2 pb-4 mb-4 border-b border-slate-800/80">
-                    <span class="developer-fire-badge developer-font text-xs sm:text-sm md:text-base flex items-center gap-1.5 uppercase font-black tracking-wide max-w-full truncate">
-                        <i class="fa-solid fa-fire text-xs sm:text-sm text-orange-500 animate-pulse"></i>
-                        EVANG.THANKGOD OKODUWA 🙏
-                    </span>
-                    <div id="prayer-counter" class="text-xs sm:text-sm font-bold text-amber-400 bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20 shrink-0">
-                        1 / 21
-                    </div>
-                </div>
+  <section class="panel">
+    <div class="bar"><i id="fill"></i></div>
+    <div class="body">
+      <div id="pnum"></div>
+      <p id="ptext"></p>
+    </div>
+    <div class="ctrl">
+      <button class="btn gold" id="listen" onclick="toggleAudio()"><span id="lt">Listen</span></button>
+      <button class="btn" onclick="reshuffle()" title="Shuffle the order of prayers">Shuffle</button>
+      <div class="sp">
+        <button class="btn" id="prev" onclick="navigate(-1)">Previous</button>
+        <button class="btn" id="next" onclick="navigate(1)">Next</button>
+      </div>
+    </div>
+  </section>
+</main>
 
-                <!-- Category Title & KJV Scripture Header -->
-                <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-                    <span id="category-title" class="heading-font text-xs md:text-sm font-extrabold tracking-widest text-amber-400 uppercase">
-                        CATEGORY
-                    </span>
-                    <span id="scripture-ref" class="text-xs md:text-sm text-slate-400 font-semibold italic">
-                        Reference (KJV)
-                    </span>
-                </div>
+<footer>Prayer Machine &bull; Programmed by ThankGod Okoduwa</footer>
 
-                <!-- Scripture Quote Display (KJV) -->
-                <div id="scripture-box" class="bg-slate-900/90 rounded-xl p-4 mb-5 border-l-4 border-amber-500 text-sm md:text-base text-slate-300 italic shadow-inner">
-                    "<span id="scripture-text">Verse loading...</span>"
-                </div>
-
-                <!-- Active Prayer Display -->
-                <div class="my-3">
-                    <div id="prayer-number" class="text-amber-500 font-bold text-base md:text-lg mb-1">
-                        PRAYER #1
-                    </div>
-                    <p id="prayer-text" class="text-base sm:text-lg md:text-xl font-medium leading-relaxed text-slate-100 transition-all duration-300">
-                        Select a category to start prayers.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Audio & Controls -->
-            <div class="pt-5 mt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3">
-                <button id="read-btn" onclick="toggleAudio()" class="flex items-center space-x-2 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 px-4 py-2.5 rounded-xl font-bold text-sm md:text-base transition-all shadow-lg shadow-amber-500/20 active:scale-95">
-                    <i id="audio-icon" class="fa-solid fa-volume-high"></i>
-                    <span id="audio-text">Listen</span>
-                </button>
-
-                <!-- Previous & Next Navigation -->
-                <div class="flex items-center space-x-2 sm:space-x-3 ml-auto">
-                    <button id="prev-btn" onclick="navigate(-1)" class="flex items-center space-x-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all border border-slate-700 disabled:opacity-40 disabled:cursor-not-allowed">
-                        <i class="fa-solid fa-chevron-left text-xs"></i>
-                        <span>Previous</span>
-                    </button>
-                    <button id="next-btn" onclick="navigate(1)" class="flex items-center space-x-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all border border-slate-700 disabled:opacity-40 disabled:cursor-not-allowed">
-                        <span>Next</span>
-                        <i class="fa-solid fa-chevron-right text-xs"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="border-t border-slate-800 py-3 text-center text-xs text-slate-500">
-        PRAYER MACHINE &bull; Programmed by ThankGod Okoduwa
-    </footer>
-
-    <!-- Script Application Logic -->
-    <script>
-        const categoriesData = [
+<script>
+const categoriesData = [
             {
                 id: "children",
                 name: "1. Children",
-                verseRef: "Psalm 127:3 (KJV)",
-                verseText: "Lo, children are an heritage of the LORD: and the fruit of the womb is his reward.",
+                verseRef: "Isaiah 49:25 (KJV)",
+                verseText: "But thus saith the LORD, Even the captives of the mighty shall be taken away, and the prey of the terrible shall be delivered: for I will contend with him that contendeth with thee, and I will save thy children.",
                 prayers: [
                     "O Lord, protect my children from every trap of darkness and preserve their souls from evil, in Jesus name.",
                     "Father, grant my children spiritual wisdom, understanding, and excellent minds, in the name of Jesus.",
@@ -174,8 +124,8 @@
             {
                 id: "youths",
                 name: "2. Youths",
-                verseRef: "1 Timothy 4:12 (KJV)",
-                verseText: "Let no man despise thy youth; but be thou an example of the believers, in word, in conversation, in charity, in spirit, in faith, in purity.",
+                verseRef: "Joel 2:28 (KJV)",
+                verseText: "And it shall come to pass afterward, that I will pour out my spirit upon all flesh; and your sons and your daughters shall prophesy, your old men shall dream dreams, your young men shall see visions.",
                 prayers: [
                     "O Lord, fire up the hearts of the youths with an unquenchable passion for Your kingdom, in Jesus name.",
                     "Father, deliver our youths from the spirit of lukewarmness, immorality, and worldly distractions, in Jesus name.",
@@ -203,8 +153,8 @@
             {
                 id: "families",
                 name: "3. Families",
-                verseRef: "Joshua 24:15 (KJV)",
-                verseText: "And if it seem evil unto you to serve the LORD, choose you this day whom ye will serve... but as for me and my house, we will serve the LORD.",
+                verseRef: "Psalm 112:2-3 (KJV)",
+                verseText: "His seed shall be mighty upon earth: the generation of the upright shall be blessed. Wealth and riches shall be in his house: and his righteousness endureth for ever.",
                 prayers: [
                     "O Lord, let Your peace reign in my family and silence every storm assigned to scatter us, in the name of Jesus.",
                     "Father, cover every member of my family with the blood of Jesus—no loss, no evil, no tragedy shall come near us.",
@@ -232,8 +182,8 @@
             {
                 id: "marriages",
                 name: "4. Marriages",
-                verseRef: "Mark 10:9 (KJV)",
-                verseText: "What therefore God hath joined together, let not man put asunder.",
+                verseRef: "Ecclesiastes 4:12 (KJV)",
+                verseText: "And if one prevail against him, two shall withstand him; and a threefold cord is not quickly broken.",
                 prayers: [
                     "O Lord, reinforce every marital foundation with the love and truth of Your Word, in Jesus name.",
                     "Father, silence every strange voice speaking strife, disagreement, and separation into marriages, in Jesus name.",
@@ -261,8 +211,8 @@
             {
                 id: "churches",
                 name: "5. Churches",
-                verseRef: "Matthew 16:18 (KJV)",
-                verseText: "And I say also unto thee, That thou art Peter, and upon this rock I will build my church; and the gates of hell shall not prevail against it.",
+                verseRef: "Acts 12:5 (KJV)",
+                verseText: "Peter therefore was kept in prison: but prayer was made without ceasing of the church unto God for him.",
                 prayers: [
                     "O Lord, let Your Holy Fire consume every form of compromise and carnality in the Church, in Jesus name.",
                     "Father, pour out a fresh baptism of the Holy Spirit and power upon Your Church worldwide, in Jesus name.",
@@ -290,8 +240,8 @@
             {
                 id: "territories",
                 name: "6. Territories",
-                verseRef: "Psalm 24:1 (KJV)",
-                verseText: "The earth is the LORD'S, and the fulness thereof; the world, and they that dwell therein.",
+                verseRef: "2 Chronicles 7:14 (KJV)",
+                verseText: "If my people, which are called by my name, shall humble themselves, and pray, and seek my face, and turn from their wicked ways; then will I hear from heaven, and will forgive their sin, and will heal their land.",
                 prayers: [
                     "O Lord, take full possession of our cities, states, and nations for Your glory, in Jesus name.",
                     "Father, dethrone every territorial principality and ruler of darkness controlling our land, in Jesus name.",
@@ -319,8 +269,8 @@
             {
                 id: "gospel",
                 name: "7. Gospel",
-                verseRef: "Romans 1:16 (KJV)",
-                verseText: "For I am not ashamed of the gospel of Christ: for it is the power of God unto salvation to every one that believeth; to the Jew first, and also to the Greek.",
+                verseRef: "Matthew 9:38 (KJV)",
+                verseText: "Pray ye therefore the Lord of the harvest, that he will send forth labourers into his harvest.",
                 prayers: [
                     "O Lord, let the light of the Gospel penetrate the darkest corners and unreached tribes of the earth, in Jesus name.",
                     "Father, grant missionaries and evangelists divine boldness, protection, and endurance, in Jesus name.",
@@ -344,146 +294,189 @@
                     "O God, ignite a global passion for souls that will sweep millions into Your Kingdom, in Jesus name.",
                     "Thank You Lord, because the Gospel is victorious, unstoppable, and saving lives every day. Amen."
                 ]
-            }
-        ];
+            },
+{ id:"healing", name:"8. Healing", verseRef:"James 5:15 (KJV)",
+verseText:"And the prayer of faith shall save the sick, and the Lord shall raise him up; and if he have committed sins, they shall be forgiven him.",
+prayers:[
+"O Lord, stretch forth Your healing hand and restore every sick body in our midst, in Jesus name.",
+"By the stripes of Jesus, I command every sickness in my body to lose its power and depart, in Jesus name.",
+"Father, let every infirmity of long standing be uprooted from its foundation, in Jesus name.",
+"Every spirit of pain, weakness, and fever, I rebuke you by the blood of Jesus.",
+"Lord, restore strength to every tired heart, weary mind, and fragile body, in Jesus name.",
+"O God, let every medical report that opposes Your promise be turned into a testimony, in Jesus name.",
+"Father, grant wisdom and skill to doctors and nurses handling the sick, in Jesus name.",
+"Every cell, organ, and system in my body, receive the touch of God and function in divine order.",
+"Lord, comfort the bedridden, the hospitalized, and the dying with Your presence, in Jesus name.",
+"Thank You Lord, because by Your stripes we are healed and made whole. Amen."]},
+{ id:"provision", name:"9. Provision", verseRef:"Deuteronomy 28:12 (KJV)",
+verseText:"The LORD shall open unto thee his good treasure, the heaven to give the rain unto thy land in his season, and to bless all the work of thine hand: and thou shalt lend unto many nations, and thou shalt not borrow.",
+prayers:[
+"O Lord, supply every need in my life according to Your riches in glory, in Jesus name.",
+"Father, open the windows of heaven and release supernatural provision upon my household, in Jesus name.",
+"Every spirit of lack, debt, and financial struggle, depart from my life by fire, in Jesus name.",
+"Lord, bless the works of my hands; let everything I touch prosper, in Jesus name.",
+"Father, connect me to divine opportunities, helpers, and doors that no man can shut, in Jesus name.",
+"Every devourer assigned to waste my income and labour, be rebuked in Jesus name.",
+"O God, teach me to give, to save, and to steward Your resources with wisdom, in Jesus name.",
+"Lord, turn my struggles into surplus, so that I lend and do not borrow, in Jesus name.",
+"Every covenant of poverty over my family line, break by the blood of Jesus.",
+"Thank You Father, because You are my Provider and I shall lack no good thing. Amen."]},
+{ id:"protection", name:"10. Protection", verseRef:"Isaiah 54:17 (KJV)",
+verseText:"No weapon that is formed against thee shall prosper; and every tongue that shall rise against thee in judgment thou shalt condemn. This is the heritage of the servants of the LORD, and their righteousness is of me, saith the LORD.",
+prayers:[
+"O Lord, be a wall of fire around me and my loved ones, in Jesus name.",
+"Father, release Your angels to guard us in our going out and our coming in, in Jesus name.",
+"Every arrow fired at me by day or by night, backfire now, in Jesus name.",
+"Blood of Jesus, speak protection over my home, my car, and my workplace.",
+"Lord, hide us in the secret place of the Most High from every evil plot, in Jesus name.",
+"Every plan of the wicked to harm me, be exposed and brought to nothing, in Jesus name.",
+"Father, deliver us from accident, violence, kidnapping, and sudden tragedy, in Jesus name.",
+"O God, cover every traveller on land, air, and sea with Your mercy, in Jesus name.",
+"Lord, let no weapon formed against us prosper, in Jesus name.",
+"Thank You Father, for You are my refuge, my fortress, and my God. Amen."]},
+{ id:"leaders", name:"11. Leaders", verseRef:"1 Timothy 2:1-2 (KJV)",
+verseText:"I exhort therefore, that, first of all, supplications, prayers, intercessions, and giving of thanks, be made for all men; For kings, and for all that are in authority; that we may lead a quiet and peaceable life in all godliness and honesty.",
+prayers:[
+"O Lord, give every president, governor, and lawmaker a heart that fears You, in Jesus name.",
+"Father, grant our leaders wisdom, integrity, and compassion for the people, in Jesus name.",
+"Every spirit of corruption and greed in public office, be destroyed by fire, in Jesus name.",
+"Lord, surround our leaders with honest counsellors and godly advisers, in Jesus name.",
+"Father, protect leaders from assassination, betrayal, and evil manipulation, in Jesus name.",
+"O God, let justice flow in our courts and let judges decide in truth, in Jesus name.",
+"Lord, bless the police, army, and security agencies with courage and uprightness, in Jesus name.",
+"Father, turn the hearts of rulers toward righteousness and peace, in Jesus name.",
+"Lord, let our leadership bring unity, security, and prosperity to our land, in Jesus name.",
+"Thank You Lord, for the king's heart is in Your hand, and You turn it as You will. Amen."]},
+{ id:"deliverance", name:"12. Deliverance", verseRef:"Psalm 107:14 (KJV)",
+verseText:"He brought them out of darkness and the shadow of death, and brake their bands in sunder.",
+prayers:[
+"O Lord, break every chain of bondage upon my life by Your mighty power, in Jesus name.",
+"Every yoke of addiction and compulsion, be broken by the anointing, in Jesus name.",
+"Father, deliver me from every habit, pattern, and desire that dishonours You, in Jesus name.",
+"Every spirit of fear, torment, and anxiety, I command you to leave me now, in Jesus name.",
+"Blood of Jesus, wash away every guilt, shame, and condemnation from my past.",
+"Lord, set free every captive in prison, hospital, and place of oppression, in Jesus name.",
+"Every stronghold in my mind raised against the knowledge of God, be pulled down, in Jesus name.",
+"Father, uproot every evil seed sown in my life by the enemy, in Jesus name.",
+"Holy Spirit, fill every space in me that darkness has vacated, in Jesus name.",
+"Thank You Jesus, because I am free, and whom the Son sets free is free indeed. Amen."]},
+{ id:"singles", name:"13. Singles", verseRef:"Psalm 37:4-5 (KJV)",
+verseText:"Delight thyself also in the LORD; and he shall give thee the desires of thine heart. Commit thy way unto the LORD; trust also in him; and he shall bring it to pass.",
+prayers:[
+"O Lord, prepare every single believer for the godly partner You have ordained, in Jesus name.",
+"Father, lead my steps to the right spouse at the right time, in Jesus name.",
+"Every delay, disappointment, or hindrance to godly marriage, be removed by fire, in Jesus name.",
+"Lord, guard the hearts of singles from wrong relationships and emotional wounds, in Jesus name.",
+"Father, keep every unmarried believer pure in body, mind, and spirit, in Jesus name.",
+"Every marital covenant or spiritual spouse fighting my destiny, be cancelled by the blood of Jesus.",
+"O God, heal the loneliness of those waiting and fill them with Your joy, in Jesus name.",
+"Lord, let single men and women grow in purpose, maturity, and godly character, in Jesus name.",
+"Father, bring the right partners together to build homes that glorify You, in Jesus name.",
+"Thank You Lord, for You make everything beautiful in its time. Amen."]},
+{ id:"students", name:"14. Students", verseRef:"James 1:5 (KJV)",
+verseText:"If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him.",
+prayers:[
+"O Lord, give every student a sharp mind, a strong memory, and a hunger to learn, in Jesus name.",
+"Father, release the spirit of wisdom and understanding upon all learners, in Jesus name.",
+"Every spirit of confusion, forgetfulness, and examination failure, depart, in Jesus name.",
+"Lord, grant students favour before teachers, examiners, and school authorities, in Jesus name.",
+"Father, protect every school from cultism, violence, and corrupt influences, in Jesus name.",
+"O God, supply school fees, books, and every resource students need, in Jesus name.",
+"Lord, guard our students from drugs, immorality, and wrong friends, in Jesus name.",
+"Every academic delay or frustration, be removed so that students graduate on time, in Jesus name.",
+"Father, raise students who excel in knowledge and in godly character, in Jesus name.",
+"Thank You Lord, because You give knowledge and skill in all learning and wisdom. Amen."]},
+{ id:"peace", name:"15. Peace", verseRef:"Philippians 4:6-7 (KJV)",
+verseText:"Be careful for nothing; but in every thing by prayer and supplication with thanksgiving let your requests be made known unto God. And the peace of God, which passeth all understanding, shall keep your hearts and minds through Christ Jesus.",
+prayers:[
+"O Lord, fill my heart with Your perfect peace in every storm, in Jesus name.",
+"Every spirit of anxiety, worry, and restlessness, I cast you out by the blood of Jesus.",
+"Father, heal every troubled mind and calm every racing thought, in Jesus name.",
+"Lord, grant me peaceful sleep and rest without fear in the night, in Jesus name.",
+"Every spirit of depression and heaviness, lift off my life now, in Jesus name.",
+"Father, let Your joy be my strength when I am weak, in Jesus name.",
+"Holy Spirit, remind me daily to cast all my cares upon You, in Jesus name.",
+"O God, bring peace into every troubled home, workplace, and relationship, in Jesus name.",
+"Lord, keep my mind fixed on You and not on my fears, in Jesus name.",
+"Thank You Lord, for the peace that passes understanding now guards my heart and mind. Amen."]}
+];
 
-        let activePrayersList = [];
-        let currentCategoryIndex = 0;
-        let currentPrayerIndex = 0;
-        let synth = window.speechSynthesis;
-        let isSpeaking = false;
+let list = [], ci = 0, pi = 0, speaking = false;
+const synth = window.speechSynthesis;
+const $ = id => document.getElementById(id);
+const hue = i => (i * 360 / categoriesData.length + 205) % 360;
+const clean = n => n.replace(/^\d+\.\s*/, '');
 
-        // Dynamic Elements
-        const categoryTabs = document.getElementById('category-tabs');
-        const categoryTitle = document.getElementById('category-title');
-        const scriptureRef = document.getElementById('scripture-ref');
-        const scriptureText = document.getElementById('scripture-text');
-        const prayerNumber = document.getElementById('prayer-number');
-        const prayerText = document.getElementById('prayer-text');
-        const prayerCounter = document.getElementById('prayer-counter');
-        const prevBtn = document.getElementById('prev-btn');
-        const nextBtn = document.getElementById('next-btn');
-        const audioIcon = document.getElementById('audio-icon');
-        const audioText = document.getElementById('audio-text');
+function shuffle(a){const s=[...a];for(let i=s.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[s[i],s[j]]=[s[j],s[i]];}return s;}
 
-        // Fisher-Yates Array Reshuffle Function
-        function shuffleArray(array) {
-            let shuffled = [...array];
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-            }
-            return shuffled;
-        }
+function renderChips(){
+  $('chips').innerHTML = '';
+  categoriesData.forEach((c,i)=>{
+    const b = document.createElement('button');
+    b.className = 'chip';
+    b.style.setProperty('--c', hue(i));
+    b.setAttribute('aria-pressed', i===ci);
+    b.innerHTML = '<i></i>' + clean(c.name);
+    b.onclick = () => selectCategory(i);
+    $('chips').appendChild(b);
+    if(i===ci) b.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'});
+  });
+}
 
-        // Application Startup
-        function initApp() {
-            renderTabs();
-            loadCategory(0);
-        }
+function selectCategory(i){
+  stopAudio(); ci = i; pi = 0;
+  document.documentElement.style.setProperty('--h', Math.round(hue(i)));
+  const c = categoriesData[i];
+  list = shuffle(c.prayers);
+  $('gname').textContent = 'Prayers for ' + clean(c.name).toLowerCase();
+  $('vtext').textContent = '\u201C' + c.verseText + '\u201D';
+  $('vref').textContent = c.verseRef;
+  renderChips(); show(false);
+}
 
-        // Render Tabs Bar
-        function renderTabs() {
-            categoryTabs.innerHTML = '';
-            categoriesData.forEach((cat, index) => {
-                const button = document.createElement('button');
-                button.className = `px-4 py-2 rounded-xl text-xs md:text-sm font-semibold transition-all whitespace-nowrap border ${
-                    index === currentCategoryIndex 
-                    ? 'bg-gradient-to-r from-amber-500 to-orange-500 text-slate-950 border-amber-400 font-bold shadow-md shadow-amber-500/20' 
-                    : 'bg-slate-900 text-slate-400 border-slate-800 hover:bg-slate-800 hover:text-slate-200'
-                }`;
-                button.innerText = cat.name;
-                button.onclick = () => selectCategory(index);
-                categoryTabs.appendChild(button);
-            });
-        }
+function show(animate=true){
+  stopAudio();
+  const apply = () => {
+    $('pnum').textContent = `Prayer ${pi+1} of ${list.length}`;
+    $('ptext').textContent = list[pi];
+    $('fill').style.width = ((pi+1)/list.length*100) + '%';
+    $('prev').disabled = pi===0 && ci===0;
+    $('next').textContent = pi===list.length-1 ? (ci<categoriesData.length-1 ? 'Next group' : 'Finish') : 'Next';
+    $('next').disabled = pi===list.length-1 && ci===categoriesData.length-1;
+    $('ptext').classList.remove('swap');
+  };
+  if(animate){ $('ptext').classList.add('swap'); setTimeout(apply,180); } else apply();
+}
 
-        function selectCategory(index) {
-            stopAudio();
-            currentCategoryIndex = index;
-            currentPrayerIndex = 0;
-            renderTabs();
-            loadCategory(currentCategoryIndex);
-        }
+function navigate(d){
+  const n = pi + d;
+  if(n >= list.length){ if(ci < categoriesData.length-1) selectCategory(ci+1); return; }
+  if(n < 0){ if(ci > 0){ selectCategory(ci-1); pi = list.length-1; show(false); } return; }
+  pi = n; show();
+}
 
-        function loadCategory(catIndex) {
-            const cat = categoriesData[catIndex];
-            
-            // Reshuffle prayers array for fresh session start
-            activePrayersList = shuffleArray(cat.prayers);
-            
-            categoryTitle.innerText = cat.name.toUpperCase();
-            scriptureRef.innerText = cat.verseRef;
-            scriptureText.innerText = cat.verseText;
-            updatePrayerDisplay();
-        }
+function reshuffle(){ list = shuffle(categoriesData[ci].prayers); pi = 0; show(); }
 
-        function updatePrayerDisplay() {
-            stopAudio();
-            prayerNumber.innerText = `PRAYER #${currentPrayerIndex + 1}`;
-            prayerText.innerText = activePrayersList[currentPrayerIndex];
-            prayerCounter.innerText = `${currentPrayerIndex + 1} / 21`;
+function toggleAudio(){ speaking ? stopAudio() : speak(); }
+function speak(){
+  if(!('speechSynthesis' in window)){ alert('Text-to-speech is not supported on this device or browser.'); return; }
+  synth.cancel();
+  const u = new SpeechSynthesisUtterance($('ptext').textContent);
+  u.rate = .9;
+  u.onstart = () => { speaking = true; $('lt').textContent = 'Stop'; };
+  u.onend = u.onerror = resetAudio;
+  synth.speak(u);
+}
+function stopAudio(){ if('speechSynthesis' in window) synth.cancel(); resetAudio(); }
+function resetAudio(){ speaking = false; $('lt').textContent = 'Listen'; }
 
-            prevBtn.disabled = currentPrayerIndex === 0;
-            nextBtn.disabled = currentPrayerIndex === activePrayersList.length - 1;
-        }
+document.addEventListener('keydown', e => {
+  if(e.key==='ArrowRight') navigate(1);
+  if(e.key==='ArrowLeft') navigate(-1);
+});
 
-        function navigate(direction) {
-            const newIndex = currentPrayerIndex + direction;
-
-            if (newIndex >= 0 && newIndex < activePrayersList.length) {
-                currentPrayerIndex = newIndex;
-                updatePrayerDisplay();
-            }
-        }
-
-        // Audio Controls
-        function toggleAudio() {
-            if (isSpeaking) {
-                stopAudio();
-            } else {
-                speakPrayer();
-            }
-        }
-
-        function speakPrayer() {
-            if ('speechSynthesis' in window) {
-                synth.cancel();
-                const textToSpeak = prayerText.innerText;
-                const utterance = new SpeechSynthesisUtterance(textToSpeak);
-                
-                utterance.rate = 0.9;
-                utterance.pitch = 1.0;
-
-                utterance.onstart = () => {
-                    isSpeaking = true;
-                    audioIcon.className = "fa-solid fa-square text-red-950";
-                    audioText.innerText = "Stop";
-                };
-
-                utterance.onend = () => { resetAudioUI(); };
-                utterance.onerror = () => { resetAudioUI(); };
-
-                synth.speak(utterance);
-            } else {
-                alert("Text-to-speech is not supported on this device/browser.");
-            }
-        }
-
-        function stopAudio() {
-            if ('speechSynthesis' in window) {
-                synth.cancel();
-            }
-            resetAudioUI();
-        }
-
-        function resetAudioUI() {
-            isSpeaking = false;
-            audioIcon.className = "fa-solid fa-volume-high";
-            audioText.innerText = "Listen";
-        }
-
-        window.onload = initApp;
-    </script>
+$('sub').textContent = `${categoriesData.length} prayer groups, each with its own scripture (KJV)`;
+selectCategory(0);
+</script>
 </body>
 </html>
