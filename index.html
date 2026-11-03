@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Prayer Machine - ThankGod Okoduwa</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,6 +53,42 @@ button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 .sp{margin-left:auto;display:flex;gap:.6rem}
 footer{margin-top:auto;text-align:center;padding:1.6rem 0 1.2rem;font-size:.78rem;color:var(--muted)}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* Responsive sizing: retain natural vertical scrolling and readable text. */
+html { width:100%; min-width:0; -webkit-text-size-adjust:100%; }
+body { width:100%; min-width:0; min-height:100vh; min-height:100dvh; }
+.wrap { width:calc(100% - 24px); max-width:760px; min-width:0; }
+main, section, nav, .body, .ctrl, .sp { min-width:0; }
+h1, .credit, .sub, #gname, #vtext, #vref, #ptext, footer { overflow-wrap:anywhere; }
+.chips { max-width:100%; overscroll-behavior-x:contain; -webkit-overflow-scrolling:touch; }
+.btn { min-height:44px; justify-content:center; white-space:normal; }
+footer { padding-bottom:max(1.2rem, env(safe-area-inset-bottom)); }
+@media(max-width:719px) {
+ header { padding-top:1.15rem; padding-bottom:.65rem; }
+ h1 { font-size:clamp(1.9rem,8vw,3rem); line-height:1.12; }
+ .credit { font-size:.82rem; }
+ .sub { font-size:.78rem; line-height:1.45; }
+ .chips { gap:.4rem; padding-bottom:.6rem; }
+ .chip { min-height:44px; padding:.5rem .65rem; font-size:.8rem; }
+ .window { margin-top:.3rem; border-radius:72px 72px 16px 16px; padding:2rem 1rem 1.2rem; }
+ #vtext { font-size:clamp(1.05rem,4.5vw,1.4rem); line-height:1.5; }
+ #vref { font-size:.78rem; line-height:1.4; }
+ .panel { margin-top:.8rem; border-radius:15px; }
+ .body { padding:1.1rem 1rem; }
+ #ptext { font-size:clamp(1.25rem,5.3vw,1.75rem); line-height:1.45; min-height:0; }
+ .ctrl { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.55rem; padding:0 1rem 1rem; }
+ .ctrl > .btn { width:100%; }
+ .sp { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.55rem; grid-column:1 / -1; margin-left:0; width:100%; }
+ .btn { padding:.65rem .45rem; font-size:.86rem; }
+ footer { font-size:.72rem; line-height:1.5; padding-left:12px; padding-right:12px; }
+}
+@media(max-width:350px) {
+ .wrap { width:calc(100% - 16px); }
+ .window { border-radius:52px 52px 14px 14px; padding:1.6rem .8rem 1rem; }
+ .body { padding:1rem .8rem; }
+ .ctrl { padding:0 .8rem .8rem; }
+}
+
 </style>
 </head>
 <body>
@@ -92,313 +128,441 @@ footer{margin-top:auto;text-align:center;padding:1.6rem 0 1.2rem;font-size:.78re
 
 <script>
 const categoriesData = [
-            {
-                id: "children",
-                name: "1. Children",
-                verseRef: "Isaiah 49:25 (KJV)",
-                verseText: "But thus saith the LORD, Even the captives of the mighty shall be taken away, and the prey of the terrible shall be delivered: for I will contend with him that contendeth with thee, and I will save thy children.",
-                prayers: [
-                    "O Lord, protect my children from every trap of darkness and preserve their souls from evil, in Jesus name.",
-                    "Father, grant my children spiritual wisdom, understanding, and excellent minds, in the name of Jesus.",
-                    "Every demonic agenda to corrupt the destiny of my children, be destroyed by fire, in Jesus name.",
-                    "Lord, surround my children with divine guardians and godly influencers everywhere they go, in Jesus name.",
-                    "Blood of Jesus, shield my children from sickness, accidents, and premature death, in the name of Jesus.",
-                    "Father, disconnect my children from bad company and demonic friendships, in Jesus name.",
-                    "O God, let Your Holy Spirit guide my children in all their choices and career paths, in Jesus name.",
-                    "Every ancestral power claiming ownership over my children's lives, break by fire, in Jesus name.",
-                    "Lord, sanctify the thoughts, eyes, and hearts of my children against worldliness, in Jesus name.",
-                    "Father, release upon my children the grace to fear, love, and obey You all their days, in Jesus name.",
-                    "O God, let my children excel academically, spiritually, and socially above their peers, in Jesus name.",
-                    "Every seed of rebellion, stubbornness, or addiction planted in my children's hearts, die now, in Jesus name.",
-                    "Lord, let Your glory shine upon my children; they shall not be victims of societal vices, in Jesus name.",
-                    "Father, fulfill Your divine covenant of peace and long life over every child in my home, in Jesus name.",
-                    "O Lord, grant my children emotional stability, strength, and confidence in their identity in Christ.",
-                    "Every satanic mark of delay or frustration on my children's future, be washed away by the blood of Jesus.",
-                    "Father, anoint my children for greatness; they shall be lenders and not borrowers, in Jesus name.",
-                    "Lord, let Your favor surround my children like a shield everywhere they step, in Jesus name.",
-                    "Every covenant of failure passed down to my children, break permanently today, in Jesus name.",
-                    "Father, make my children signs, wonders, and arrows in the hands of the Almighty, in Jesus name.",
-                    "Thank You Lord, for my children are blessed, protected, and destined for eternal impact. Amen."
-                ]
-            },
-            {
-                id: "youths",
-                name: "2. Youths",
-                verseRef: "Joel 2:28 (KJV)",
-                verseText: "And it shall come to pass afterward, that I will pour out my spirit upon all flesh; and your sons and your daughters shall prophesy, your old men shall dream dreams, your young men shall see visions.",
-                prayers: [
-                    "O Lord, fire up the hearts of the youths with an unquenchable passion for Your kingdom, in Jesus name.",
-                    "Father, deliver our youths from the spirit of lukewarmness, immorality, and worldly distractions, in Jesus name.",
-                    "Every demonic trap set to destroy the vision and potential of our youths, catch fire, in Jesus name.",
-                    "Lord, grant our youths creative ideas, innovation, and wisdom to lead in their generations, in Jesus name.",
-                    "Father, break the stronghold of addiction, depression, and mental warfare off our youths, in Jesus name.",
-                    "O God, raise a generation of youths who will stand fearlessly for righteousness and truth, in Jesus name.",
-                    "Lord, connect our young people with destiny helpers and godly mentors, in Jesus name.",
-                    "Every spirit of aimlessness, confusion, and career frustration among youths, scatter, in Jesus name.",
-                    "Father, protect our youths from evil peer pressure and destructive modern trends, in Jesus name.",
-                    "O God, ignite divine visions and dreams in the hearts of our young men and women, in Jesus name.",
-                    "Lord, grant our youths financial independence through legitimate skills and divine wisdom, in Jesus name.",
-                    "Every generational altar of failure assigned against young people, crumble by fire, in Jesus name.",
-                    "Father, let Your Holy Spirit sanctify the minds, relationships, and ambitions of our youths, in Jesus name.",
-                    "O God, shield our youths from premature death, crime, and satanic recruitment, in Jesus name.",
-                    "Lord, empower our youths to take over political, economic, and spiritual spheres for Christ, in Jesus name.",
-                    "Father, heal every broken heart, disappointment, and trauma in the youth generation, in Jesus name.",
-                    "Every agenda of darkness to render our youths unproductive, be neutralized by the blood of Jesus.",
-                    "O Lord, grant our youths spiritual boldness to preach the Gospel without shame, in Jesus name.",
-                    "Father, establish our young people in faith; let them not compromise their godly heritage, in Jesus name.",
-                    "Lord, turn the energy and passion of our youths into spiritual firepower for end-time revival, in Jesus name.",
-                    "Thank You Lord, because our youths are rising as champions, leaders, and lights of the world. Amen."
-                ]
-            },
-            {
-                id: "families",
-                name: "3. Families",
-                verseRef: "Psalm 112:2-3 (KJV)",
-                verseText: "His seed shall be mighty upon earth: the generation of the upright shall be blessed. Wealth and riches shall be in his house: and his righteousness endureth for ever.",
-                prayers: [
-                    "O Lord, let Your peace reign in my family and silence every storm assigned to scatter us, in the name of Jesus.",
-                    "Father, cover every member of my family with the blood of Jesus—no loss, no evil, no tragedy shall come near us.",
-                    "Every power assigned to attack the joy, unity, and progress of my family, scatter by fire, in Jesus name.",
-                    "O Lord, release Your angels to watch over my family day and night, in Jesus name.",
-                    "Blood of Jesus, break every generational curse working against my family, in the name of Jesus.",
-                    "Father, let every household wickedness rising against my family be disgraced and destroyed, in Jesus name.",
-                    "O God, restore love, unity, and understanding in my family; let every seed of division die by fire.",
-                    "Lord, heal every wounded heart and broken relationship within my family, in Jesus name.",
-                    "Every altar fighting the destiny of my family, catch fire and scatter, in Jesus name.",
-                    "O Lord, establish divine protection around my home—no sickness, no accident, no attack, in Jesus name.",
-                    "Father, bless the works of our hands; let my family experience supernatural provision and abundance.",
-                    "Every spirit of untimely death hovering around my family, return to sender, in Jesus name.",
-                    "O God, raise my family to fulfill its divine purpose; no destiny shall be aborted, in Jesus name.",
-                    "Lord, let Your resurrection power revive every good thing dying in my family—marriages, finances, dreams, and relationships.",
-                    "Every arrow of delay, stagnation, or backwardness fired into my family, backfire now, in Jesus name.",
-                    "O God, release wisdom, excellence, and favour upon the children in my family, in Jesus name.",
-                    "Every evil pattern repeating itself in my lineage—poverty, sickness, failure, marital delay—be destroyed by fire, in Jesus name.",
-                    "O Lord, protect my family members in their going out and coming in; no harm shall come near us.",
-                    "Father, let Your light shine in my family and chase away every darkness of confusion or oppression.",
-                    "O God, let my family become a home of testimonies, breakthroughs, and divine encounters, in Jesus name.",
-                    "Thank You Jesus, because my family is blessed, preserved, restored, and lifted forever. Amen."
-                ]
-            },
-            {
-                id: "marriages",
-                name: "4. Marriages",
-                verseRef: "Ecclesiastes 4:12 (KJV)",
-                verseText: "And if one prevail against him, two shall withstand him; and a threefold cord is not quickly broken.",
-                prayers: [
-                    "O Lord, reinforce every marital foundation with the love and truth of Your Word, in Jesus name.",
-                    "Father, silence every strange voice speaking strife, disagreement, and separation into marriages, in Jesus name.",
-                    "Every demonic third party or strange woman/man seeking to tear marriages apart, scatter by fire, in Jesus name.",
-                    "Lord, rekindle the flame of genuine love, intimacy, and romance in Christian marriages, in Jesus name.",
-                    "Every spirit of unforgiveness, bitterness, and pride in marriages, die by fire, in Jesus name.",
-                    "Father, heal every wounded spouse and restore broken trust in troubled marriages, in Jesus name.",
-                    "O Lord, grant couples the grace to communicate in wisdom, grace, and patience, in Jesus name.",
-                    "Every spiritual weapon of financial distress used to cause marital conflict, be destroyed, in Jesus name.",
-                    "Father, let every seed of divorce, separation, and legal battle in marriages be uprooted, in Jesus name.",
-                    "Lord, protect couples from evil eyes, jealousy, and malicious gossip designed to ruin unions, in Jesus name.",
-                    "Every demonic spirit of lust and infidelity operating against marriages, be bound by fire, in Jesus name.",
-                    "Father, grant waiting couples the blessing of healthy children and joyful homes, in Jesus name.",
-                    "O Lord, help husbands to love their wives selflessly and wives to respect their husbands, in Jesus name.",
-                    "Every curse of marital instability inherited from ancestral lineages, break by the blood of Jesus.",
-                    "Lord, expose and neutralize every evil counsel designed to mislead married partners, in Jesus name.",
-                    "Father, erect a wall of holy fire around marriages; let no arrow of darkness penetrate, in Jesus name.",
-                    "O God, grant couples financial breakthroughs and divine wisdom to manage their households, in Jesus name.",
-                    "Every spirit of impatience and emotional distance in marriages, be cast out, in Jesus name.",
-                    "Lord, let your peace that passes all human understanding guard every marital heart, in Jesus name.",
-                    "Father, turn every bitter marriage into a testimony of sweetness and joy, in Jesus name.",
-                    "Thank You Lord, because our marriages are built on Christ the Solid Rock and will endure forever. Amen."
-                ]
-            },
-            {
-                id: "churches",
-                name: "5. Churches",
-                verseRef: "Acts 12:5 (KJV)",
-                verseText: "Peter therefore was kept in prison: but prayer was made without ceasing of the church unto God for him.",
-                prayers: [
-                    "O Lord, let Your Holy Fire consume every form of compromise and carnality in the Church, in Jesus name.",
-                    "Father, pour out a fresh baptism of the Holy Spirit and power upon Your Church worldwide, in Jesus name.",
-                    "Every demonic attack on spiritual leaders, pastors, and ministers, backfire by fire, in Jesus name.",
-                    "Lord, raise faithful intercessors and genuine prayer altars in every local assembly, in Jesus name.",
-                    "Father, purge the Church of false doctrines, wolf-in-sheep-clothing, and worldly schemes, in Jesus name.",
-                    "O God, bring genuine unity, love, and fellowship among denominations and believers, in Jesus name.",
-                    "Lord, let signs, wonders, and genuine miracles become the daily order in our churches, in Jesus name.",
-                    "Every power seeking to scatter or silence the growth of local churches, be disgraced, in Jesus name.",
-                    "Father, release financial abundance into the Church to fund missions and Kingdom advancement, in Jesus name.",
-                    "O Lord, protect ministers of the Gospel and their families from evil plots and scandals, in Jesus name.",
-                    "Father, let the Church remain a true refuge, healing center, and light to the lost, in Jesus name.",
-                    "Every altar of darkness established to fight the Church in any community, catch fire, in Jesus name.",
-                    "Lord, grant pastors divine wisdom, spiritual stamina, and deep revelation of Your Word, in Jesus name.",
-                    "Father, ignite a passion for soul-winning and personal evangelism in every member, in Jesus name.",
-                    "O God, silence every legal or governmental plot aimed at suppressing church worship, in Jesus name.",
-                    "Lord, remove every root of pride, competition, and rivalry among church leaders, in Jesus name.",
-                    "Father, open the doors of local assemblies to unreached souls and prodigal sons, in Jesus name.",
-                    "O Lord, raise a holy and uncompromising army of believers in these last days, in Jesus name.",
-                    "Every satanic spy or agent sent to infiltrate and destroy the church from within, be exposed, in Jesus name.",
-                    "Father, let Your presence be heavily felt in every worship gathering across the globe, in Jesus name.",
-                    "Thank You Lord, for the Church is marching on, and the gates of hell shall never prevail. Amen."
-                ]
-            },
-            {
-                id: "territories",
-                name: "6. Territories",
-                verseRef: "2 Chronicles 7:14 (KJV)",
-                verseText: "If my people, which are called by my name, shall humble themselves, and pray, and seek my face, and turn from their wicked ways; then will I hear from heaven, and will forgive their sin, and will heal their land.",
-                prayers: [
-                    "O Lord, take full possession of our cities, states, and nations for Your glory, in Jesus name.",
-                    "Father, dethrone every territorial principality and ruler of darkness controlling our land, in Jesus name.",
-                    "Every altar of idolatry, witchcraft, and blood-shedding in our land, catch fire and burn to ashes.",
-                    "Lord, let the blood of Jesus cleanse our land from every innocent blood spilled upon it, in Jesus name.",
-                    "Father, break the grip of poverty, economic collapse, and inflation over our nation, in Jesus name.",
-                    "O God, arise and scatter every gang of evil men plotting civil unrest, terrorism, or war, in Jesus name.",
-                    "Lord, install righteous leaders who fear You into positions of authority across our territory, in Jesus name.",
-                    "Every demonic prince of Persia blocking territorial blessings and revivals, be overthrown, in Jesus name.",
-                    "Father, release Your angels to patrol our borders, cities, and communities day and night, in Jesus name.",
-                    "O Lord, let truth, justice, and righteousness reign supreme in our courts and government houses, in Jesus name.",
-                    "Father, heal our land from plagues, epidemics, and environmental disasters, in Jesus name.",
-                    "Every covenant made with darkness by ancestral leaders over our territory, break by the blood of Jesus.",
-                    "Lord, open the windows of heaven and shower economic and spiritual prosperity on our land, in Jesus name.",
-                    "O God, expose and dismantle all corrupt systems destroying the welfare of our citizens, in Jesus name.",
-                    "Father, let the sound of praise and salvation echo through every street and city in our nation, in Jesus name.",
-                    "Every spiritual veil of darkness keeping our territory in spiritual blindness, be torn off, in Jesus name.",
-                    "Lord, grant peaceful co-existence, security, and safety to all residents of our land, in Jesus name.",
-                    "Father, transform our territory into a fertile ground for righteous enterprise and divine visitation.",
-                    "O Lord, silence the voice of evil decrees spoken against the future of our country, in Jesus name.",
-                    "Father, let Your revival fire sweep across every corner of our territory without hindrance, in Jesus name.",
-                    "Thank You Lord, because our land is redeemed, peaceful, prosperous, and belongs to God. Amen."
-                ]
-            },
-            {
-                id: "gospel",
-                name: "7. Gospel",
-                verseRef: "Matthew 9:38 (KJV)",
-                verseText: "Pray ye therefore the Lord of the harvest, that he will send forth labourers into his harvest.",
-                prayers: [
-                    "O Lord, let the light of the Gospel penetrate the darkest corners and unreached tribes of the earth, in Jesus name.",
-                    "Father, grant missionaries and evangelists divine boldness, protection, and endurance, in Jesus name.",
-                    "Every satanic barrier hindering the preaching of the Gospel, be shattered to pieces, in Jesus name.",
-                    "Lord, confirm Your Word with miraculous signs, wonders, and healings wherever the Gospel is preached.",
-                    "Father, open closed nations, restricted borders, and hostile hearts to the saving grace of Jesus, in Jesus name.",
-                    "O God, raise bold, uncompromising evangelists to proclaim Your truth in the media and public square.",
-                    "Lord, destroy every demonic ideology, philosophy, and false religion fighting the Gospel, in Jesus name.",
-                    "Father, protect frontline missionaries from violence, imprisonment, and martyrdom, in Jesus name.",
-                    "O Lord, release massive financial resources to fund worldwide evangelism and mission projects, in Jesus name.",
-                    "Father, let every soul winning effort yield lasting fruit that remains, in Jesus name.",
-                    "Lord, pour out the spirit of conviction upon sinners whenever the Gospel message is delivered, in Jesus name.",
-                    "Every demonic veil blinding the minds of unbelievers from seeing Christ's light, be removed by fire.",
-                    "O God, raise digital evangelists and creative minds to flood the internet with the Gospel, in Jesus name.",
-                    "Father, protect the Holy Bible and sound doctrine from distortion, censorship, and corruption, in Jesus name.",
-                    "Lord, let the Gospel bring deliverance, freedom, and transformation to prisoners, addicts, and the lost.",
-                    "Father, unite the body of Christ for the swift completion of the Great Commission, in Jesus name.",
-                    "O Lord, let Your Word run swiftly and be glorified in every culture and language, in Jesus name.",
-                    "Every spirit of fear or shame in believers preventing them from sharing their faith, be cast out, in Jesus name.",
-                    "Father, grant spiritual dreams and visions to those in closed countries so they may find Jesus, in Jesus name.",
-                    "O God, ignite a global passion for souls that will sweep millions into Your Kingdom, in Jesus name.",
-                    "Thank You Lord, because the Gospel is victorious, unstoppable, and saving lives every day. Amen."
-                ]
-            },
-{ id:"healing", name:"8. Healing", verseRef:"James 5:15 (KJV)",
-verseText:"And the prayer of faith shall save the sick, and the Lord shall raise him up; and if he have committed sins, they shall be forgiven him.",
-prayers:[
-"O Lord, stretch forth Your healing hand and restore every sick body in our midst, in Jesus name.",
-"By the stripes of Jesus, I command every sickness in my body to lose its power and depart, in Jesus name.",
-"Father, let every infirmity of long standing be uprooted from its foundation, in Jesus name.",
-"Every spirit of pain, weakness, and fever, I rebuke you by the blood of Jesus.",
-"Lord, restore strength to every tired heart, weary mind, and fragile body, in Jesus name.",
-"O God, let every medical report that opposes Your promise be turned into a testimony, in Jesus name.",
-"Father, grant wisdom and skill to doctors and nurses handling the sick, in Jesus name.",
-"Every cell, organ, and system in my body, receive the touch of God and function in divine order.",
-"Lord, comfort the bedridden, the hospitalized, and the dying with Your presence, in Jesus name.",
-"Thank You Lord, because by Your stripes we are healed and made whole. Amen."]},
-{ id:"provision", name:"9. Provision", verseRef:"Deuteronomy 28:12 (KJV)",
-verseText:"The LORD shall open unto thee his good treasure, the heaven to give the rain unto thy land in his season, and to bless all the work of thine hand: and thou shalt lend unto many nations, and thou shalt not borrow.",
-prayers:[
-"O Lord, supply every need in my life according to Your riches in glory, in Jesus name.",
-"Father, open the windows of heaven and release supernatural provision upon my household, in Jesus name.",
-"Every spirit of lack, debt, and financial struggle, depart from my life by fire, in Jesus name.",
-"Lord, bless the works of my hands; let everything I touch prosper, in Jesus name.",
-"Father, connect me to divine opportunities, helpers, and doors that no man can shut, in Jesus name.",
-"Every devourer assigned to waste my income and labour, be rebuked in Jesus name.",
-"O God, teach me to give, to save, and to steward Your resources with wisdom, in Jesus name.",
-"Lord, turn my struggles into surplus, so that I lend and do not borrow, in Jesus name.",
-"Every covenant of poverty over my family line, break by the blood of Jesus.",
-"Thank You Father, because You are my Provider and I shall lack no good thing. Amen."]},
-{ id:"protection", name:"10. Protection", verseRef:"Isaiah 54:17 (KJV)",
-verseText:"No weapon that is formed against thee shall prosper; and every tongue that shall rise against thee in judgment thou shalt condemn. This is the heritage of the servants of the LORD, and their righteousness is of me, saith the LORD.",
-prayers:[
-"O Lord, be a wall of fire around me and my loved ones, in Jesus name.",
-"Father, release Your angels to guard us in our going out and our coming in, in Jesus name.",
-"Every arrow fired at me by day or by night, backfire now, in Jesus name.",
-"Blood of Jesus, speak protection over my home, my car, and my workplace.",
-"Lord, hide us in the secret place of the Most High from every evil plot, in Jesus name.",
-"Every plan of the wicked to harm me, be exposed and brought to nothing, in Jesus name.",
-"Father, deliver us from accident, violence, kidnapping, and sudden tragedy, in Jesus name.",
-"O God, cover every traveller on land, air, and sea with Your mercy, in Jesus name.",
-"Lord, let no weapon formed against us prosper, in Jesus name.",
-"Thank You Father, for You are my refuge, my fortress, and my God. Amen."]},
-{ id:"leaders", name:"11. Leaders", verseRef:"1 Timothy 2:1-2 (KJV)",
-verseText:"I exhort therefore, that, first of all, supplications, prayers, intercessions, and giving of thanks, be made for all men; For kings, and for all that are in authority; that we may lead a quiet and peaceable life in all godliness and honesty.",
-prayers:[
-"O Lord, give every president, governor, and lawmaker a heart that fears You, in Jesus name.",
-"Father, grant our leaders wisdom, integrity, and compassion for the people, in Jesus name.",
-"Every spirit of corruption and greed in public office, be destroyed by fire, in Jesus name.",
-"Lord, surround our leaders with honest counsellors and godly advisers, in Jesus name.",
-"Father, protect leaders from assassination, betrayal, and evil manipulation, in Jesus name.",
-"O God, let justice flow in our courts and let judges decide in truth, in Jesus name.",
-"Lord, bless the police, army, and security agencies with courage and uprightness, in Jesus name.",
-"Father, turn the hearts of rulers toward righteousness and peace, in Jesus name.",
-"Lord, let our leadership bring unity, security, and prosperity to our land, in Jesus name.",
-"Thank You Lord, for the king's heart is in Your hand, and You turn it as You will. Amen."]},
-{ id:"deliverance", name:"12. Deliverance", verseRef:"Psalm 107:14 (KJV)",
-verseText:"He brought them out of darkness and the shadow of death, and brake their bands in sunder.",
-prayers:[
-"O Lord, break every chain of bondage upon my life by Your mighty power, in Jesus name.",
-"Every yoke of addiction and compulsion, be broken by the anointing, in Jesus name.",
-"Father, deliver me from every habit, pattern, and desire that dishonours You, in Jesus name.",
-"Every spirit of fear, torment, and anxiety, I command you to leave me now, in Jesus name.",
-"Blood of Jesus, wash away every guilt, shame, and condemnation from my past.",
-"Lord, set free every captive in prison, hospital, and place of oppression, in Jesus name.",
-"Every stronghold in my mind raised against the knowledge of God, be pulled down, in Jesus name.",
-"Father, uproot every evil seed sown in my life by the enemy, in Jesus name.",
-"Holy Spirit, fill every space in me that darkness has vacated, in Jesus name.",
-"Thank You Jesus, because I am free, and whom the Son sets free is free indeed. Amen."]},
-{ id:"singles", name:"13. Singles", verseRef:"Psalm 37:4-5 (KJV)",
-verseText:"Delight thyself also in the LORD; and he shall give thee the desires of thine heart. Commit thy way unto the LORD; trust also in him; and he shall bring it to pass.",
-prayers:[
-"O Lord, prepare every single believer for the godly partner You have ordained, in Jesus name.",
-"Father, lead my steps to the right spouse at the right time, in Jesus name.",
-"Every delay, disappointment, or hindrance to godly marriage, be removed by fire, in Jesus name.",
-"Lord, guard the hearts of singles from wrong relationships and emotional wounds, in Jesus name.",
-"Father, keep every unmarried believer pure in body, mind, and spirit, in Jesus name.",
-"Every marital covenant or spiritual spouse fighting my destiny, be cancelled by the blood of Jesus.",
-"O God, heal the loneliness of those waiting and fill them with Your joy, in Jesus name.",
-"Lord, let single men and women grow in purpose, maturity, and godly character, in Jesus name.",
-"Father, bring the right partners together to build homes that glorify You, in Jesus name.",
-"Thank You Lord, for You make everything beautiful in its time. Amen."]},
-{ id:"students", name:"14. Students", verseRef:"James 1:5 (KJV)",
-verseText:"If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him.",
-prayers:[
-"O Lord, give every student a sharp mind, a strong memory, and a hunger to learn, in Jesus name.",
-"Father, release the spirit of wisdom and understanding upon all learners, in Jesus name.",
-"Every spirit of confusion, forgetfulness, and examination failure, depart, in Jesus name.",
-"Lord, grant students favour before teachers, examiners, and school authorities, in Jesus name.",
-"Father, protect every school from cultism, violence, and corrupt influences, in Jesus name.",
-"O God, supply school fees, books, and every resource students need, in Jesus name.",
-"Lord, guard our students from drugs, immorality, and wrong friends, in Jesus name.",
-"Every academic delay or frustration, be removed so that students graduate on time, in Jesus name.",
-"Father, raise students who excel in knowledge and in godly character, in Jesus name.",
-"Thank You Lord, because You give knowledge and skill in all learning and wisdom. Amen."]},
-{ id:"peace", name:"15. Peace", verseRef:"Philippians 4:6-7 (KJV)",
-verseText:"Be careful for nothing; but in every thing by prayer and supplication with thanksgiving let your requests be made known unto God. And the peace of God, which passeth all understanding, shall keep your hearts and minds through Christ Jesus.",
-prayers:[
-"O Lord, fill my heart with Your perfect peace in every storm, in Jesus name.",
-"Every spirit of anxiety, worry, and restlessness, I cast you out by the blood of Jesus.",
-"Father, heal every troubled mind and calm every racing thought, in Jesus name.",
-"Lord, grant me peaceful sleep and rest without fear in the night, in Jesus name.",
-"Every spirit of depression and heaviness, lift off my life now, in Jesus name.",
-"Father, let Your joy be my strength when I am weak, in Jesus name.",
-"Holy Spirit, remind me daily to cast all my cares upon You, in Jesus name.",
-"O God, bring peace into every troubled home, workplace, and relationship, in Jesus name.",
-"Lord, keep my mind fixed on You and not on my fears, in Jesus name.",
-"Thank You Lord, for the peace that passes understanding now guards my heart and mind. Amen."]}
+    {
+        "id": "children",
+        "name": "1. Children",
+        "verseRef": "Isaiah 49:25 (KJV)",
+        "verseText": "But thus saith the LORD, Even the captives of the mighty shall be taken away, and the prey of the terrible shall be delivered: for I will contend with him that contendeth with thee, and I will save thy children.",
+        "prayers": [
+            "O Lord, protect my children from every trap of darkness and preserve their souls from evil, in Jesus name.",
+            "Father, grant my children spiritual wisdom, understanding, and excellent minds, in the name of Jesus.",
+            "Every demonic agenda to corrupt the destiny of my children, be destroyed by fire, in Jesus name.",
+            "Lord, surround my children with divine guardians and godly influencers everywhere they go, in Jesus name.",
+            "Blood of Jesus, shield my children from sickness, accidents, and premature death, in the name of Jesus.",
+            "Father, disconnect my children from bad company and demonic friendships, in Jesus name.",
+            "O God, let Your Holy Spirit guide my children in all their choices and career paths, in Jesus name.",
+            "Every ancestral power claiming ownership over my children's lives, break by fire, in Jesus name.",
+            "Lord, sanctify the thoughts, eyes, and hearts of my children against worldliness, in Jesus name.",
+            "Father, release upon my children the grace to fear, love, and obey You all their days, in Jesus name.",
+            "O God, let my children excel academically, spiritually, and socially above their peers, in Jesus name.",
+            "Every seed of rebellion, stubbornness, or addiction planted in my children's hearts, die now, in Jesus name.",
+            "Lord, let Your glory shine upon my children; they shall not be victims of societal vices, in Jesus name.",
+            "Father, fulfill Your divine covenant of peace and long life over every child in my home, in Jesus name.",
+            "O Lord, grant my children emotional stability, strength, and confidence in their identity in Christ.",
+            "Every satanic mark of delay or frustration on my children's future, be washed away by the blood of Jesus.",
+            "Father, anoint my children for greatness; they shall be lenders and not borrowers, in Jesus name.",
+            "Lord, let Your favor surround my children like a shield everywhere they step, in Jesus name.",
+            "Every covenant of failure passed down to my children, break permanently today, in Jesus name.",
+            "Father, make my children signs, wonders, and arrows in the hands of the Almighty, in Jesus name.",
+            "Thank You Lord, for my children are blessed, protected, and destined for eternal impact. Amen."
+        ]
+    },
+    {
+        "id": "youths",
+        "name": "2. Youths",
+        "verseRef": "Joel 2:28 (KJV)",
+        "verseText": "And it shall come to pass afterward, that I will pour out my spirit upon all flesh; and your sons and your daughters shall prophesy, your old men shall dream dreams, your young men shall see visions.",
+        "prayers": [
+            "O Lord, fire up the hearts of the youths with an unquenchable passion for Your kingdom, in Jesus name.",
+            "Father, deliver our youths from the spirit of lukewarmness, immorality, and worldly distractions, in Jesus name.",
+            "Every demonic trap set to destroy the vision and potential of our youths, catch fire, in Jesus name.",
+            "Lord, grant our youths creative ideas, innovation, and wisdom to lead in their generations, in Jesus name.",
+            "Father, break the stronghold of addiction, depression, and mental warfare off our youths, in Jesus name.",
+            "O God, raise a generation of youths who will stand fearlessly for righteousness and truth, in Jesus name.",
+            "Lord, connect our young people with destiny helpers and godly mentors, in Jesus name.",
+            "Every spirit of aimlessness, confusion, and career frustration among youths, scatter, in Jesus name.",
+            "Father, protect our youths from evil peer pressure and destructive modern trends, in Jesus name.",
+            "O God, ignite divine visions and dreams in the hearts of our young men and women, in Jesus name.",
+            "Lord, grant our youths financial independence through legitimate skills and divine wisdom, in Jesus name.",
+            "Every generational altar of failure assigned against young people, crumble by fire, in Jesus name.",
+            "Father, let Your Holy Spirit sanctify the minds, relationships, and ambitions of our youths, in Jesus name.",
+            "O God, shield our youths from premature death, crime, and satanic recruitment, in Jesus name.",
+            "Lord, empower our youths to take over political, economic, and spiritual spheres for Christ, in Jesus name.",
+            "Father, heal every broken heart, disappointment, and trauma in the youth generation, in Jesus name.",
+            "Every agenda of darkness to render our youths unproductive, be neutralized by the blood of Jesus.",
+            "O Lord, grant our youths spiritual boldness to preach the Gospel without shame, in Jesus name.",
+            "Father, establish our young people in faith; let them not compromise their godly heritage, in Jesus name.",
+            "Lord, turn the energy and passion of our youths into spiritual firepower for end-time revival, in Jesus name.",
+            "Thank You Lord, because our youths are rising as champions, leaders, and lights of the world. Amen."
+        ]
+    },
+    {
+        "id": "families",
+        "name": "3. Families",
+        "verseRef": "Psalm 112:2-3 (KJV)",
+        "verseText": "His seed shall be mighty upon earth: the generation of the upright shall be blessed. Wealth and riches shall be in his house: and his righteousness endureth for ever.",
+        "prayers": [
+            "O Lord, let Your peace reign in my family and silence every storm assigned to scatter us, in the name of Jesus.",
+            "Father, cover every member of my family with the blood of Jesus—no loss, no evil, no tragedy shall come near us.",
+            "Every power assigned to attack the joy, unity, and progress of my family, scatter by fire, in Jesus name.",
+            "O Lord, release Your angels to watch over my family day and night, in Jesus name.",
+            "Blood of Jesus, break every generational curse working against my family, in the name of Jesus.",
+            "Father, let every household wickedness rising against my family be disgraced and destroyed, in Jesus name.",
+            "O God, restore love, unity, and understanding in my family; let every seed of division die by fire.",
+            "Lord, heal every wounded heart and broken relationship within my family, in Jesus name.",
+            "Every altar fighting the destiny of my family, catch fire and scatter, in Jesus name.",
+            "O Lord, establish divine protection around my home—no sickness, no accident, no attack, in Jesus name.",
+            "Father, bless the works of our hands; let my family experience supernatural provision and abundance.",
+            "Every spirit of untimely death hovering around my family, return to sender, in Jesus name.",
+            "O God, raise my family to fulfill its divine purpose; no destiny shall be aborted, in Jesus name.",
+            "Lord, let Your resurrection power revive every good thing dying in my family—marriages, finances, dreams, and relationships.",
+            "Every arrow of delay, stagnation, or backwardness fired into my family, backfire now, in Jesus name.",
+            "O God, release wisdom, excellence, and favour upon the children in my family, in Jesus name.",
+            "Every evil pattern repeating itself in my lineage—poverty, sickness, failure, marital delay—be destroyed by fire, in Jesus name.",
+            "O Lord, protect my family members in their going out and coming in; no harm shall come near us.",
+            "Father, let Your light shine in my family and chase away every darkness of confusion or oppression.",
+            "O God, let my family become a home of testimonies, breakthroughs, and divine encounters, in Jesus name.",
+            "Thank You Jesus, because my family is blessed, preserved, restored, and lifted forever. Amen."
+        ]
+    },
+    {
+        "id": "marriages",
+        "name": "4. Marriages",
+        "verseRef": "Ecclesiastes 4:12 (KJV)",
+        "verseText": "And if one prevail against him, two shall withstand him; and a threefold cord is not quickly broken.",
+        "prayers": [
+            "O Lord, reinforce every marital foundation with the love and truth of Your Word, in Jesus name.",
+            "Father, silence every strange voice speaking strife, disagreement, and separation into marriages, in Jesus name.",
+            "Every demonic third party or strange woman/man seeking to tear marriages apart, scatter by fire, in Jesus name.",
+            "Lord, rekindle the flame of genuine love, intimacy, and romance in Christian marriages, in Jesus name.",
+            "Every spirit of unforgiveness, bitterness, and pride in marriages, die by fire, in Jesus name.",
+            "Father, heal every wounded spouse and restore broken trust in troubled marriages, in Jesus name.",
+            "O Lord, grant couples the grace to communicate in wisdom, grace, and patience, in Jesus name.",
+            "Every spiritual weapon of financial distress used to cause marital conflict, be destroyed, in Jesus name.",
+            "Father, let every seed of divorce, separation, and legal battle in marriages be uprooted, in Jesus name.",
+            "Lord, protect couples from evil eyes, jealousy, and malicious gossip designed to ruin unions, in Jesus name.",
+            "Every demonic spirit of lust and infidelity operating against marriages, be bound by fire, in Jesus name.",
+            "Father, grant waiting couples the blessing of healthy children and joyful homes, in Jesus name.",
+            "O Lord, help husbands to love their wives selflessly and wives to respect their husbands, in Jesus name.",
+            "Every curse of marital instability inherited from ancestral lineages, break by the blood of Jesus.",
+            "Lord, expose and neutralize every evil counsel designed to mislead married partners, in Jesus name.",
+            "Father, erect a wall of holy fire around marriages; let no arrow of darkness penetrate, in Jesus name.",
+            "O God, grant couples financial breakthroughs and divine wisdom to manage their households, in Jesus name.",
+            "Every spirit of impatience and emotional distance in marriages, be cast out, in Jesus name.",
+            "Lord, let your peace that passes all human understanding guard every marital heart, in Jesus name.",
+            "Father, turn every bitter marriage into a testimony of sweetness and joy, in Jesus name.",
+            "Thank You Lord, because our marriages are built on Christ the Solid Rock and will endure forever. Amen."
+        ]
+    },
+    {
+        "id": "churches",
+        "name": "5. Churches",
+        "verseRef": "Acts 12:5 (KJV)",
+        "verseText": "Peter therefore was kept in prison: but prayer was made without ceasing of the church unto God for him.",
+        "prayers": [
+            "O Lord, let Your Holy Fire consume every form of compromise and carnality in the Church, in Jesus name.",
+            "Father, pour out a fresh baptism of the Holy Spirit and power upon Your Church worldwide, in Jesus name.",
+            "Every demonic attack on spiritual leaders, pastors, and ministers, backfire by fire, in Jesus name.",
+            "Lord, raise faithful intercessors and genuine prayer altars in every local assembly, in Jesus name.",
+            "Father, purge the Church of false doctrines, wolf-in-sheep-clothing, and worldly schemes, in Jesus name.",
+            "O God, bring genuine unity, love, and fellowship among denominations and believers, in Jesus name.",
+            "Lord, let signs, wonders, and genuine miracles become the daily order in our churches, in Jesus name.",
+            "Every power seeking to scatter or silence the growth of local churches, be disgraced, in Jesus name.",
+            "Father, release financial abundance into the Church to fund missions and Kingdom advancement, in Jesus name.",
+            "O Lord, protect ministers of the Gospel and their families from evil plots and scandals, in Jesus name.",
+            "Father, let the Church remain a true refuge, healing center, and light to the lost, in Jesus name.",
+            "Every altar of darkness established to fight the Church in any community, catch fire, in Jesus name.",
+            "Lord, grant pastors divine wisdom, spiritual stamina, and deep revelation of Your Word, in Jesus name.",
+            "Father, ignite a passion for soul-winning and personal evangelism in every member, in Jesus name.",
+            "O God, silence every legal or governmental plot aimed at suppressing church worship, in Jesus name.",
+            "Lord, remove every root of pride, competition, and rivalry among church leaders, in Jesus name.",
+            "Father, open the doors of local assemblies to unreached souls and prodigal sons, in Jesus name.",
+            "O Lord, raise a holy and uncompromising army of believers in these last days, in Jesus name.",
+            "Every satanic spy or agent sent to infiltrate and destroy the church from within, be exposed, in Jesus name.",
+            "Father, let Your presence be heavily felt in every worship gathering across the globe, in Jesus name.",
+            "Thank You Lord, for the Church is marching on, and the gates of hell shall never prevail. Amen."
+        ]
+    },
+    {
+        "id": "territories",
+        "name": "6. Territories",
+        "verseRef": "2 Chronicles 7:14 (KJV)",
+        "verseText": "If my people, which are called by my name, shall humble themselves, and pray, and seek my face, and turn from their wicked ways; then will I hear from heaven, and will forgive their sin, and will heal their land.",
+        "prayers": [
+            "O Lord, take full possession of our cities, states, and nations for Your glory, in Jesus name.",
+            "Father, dethrone every territorial principality and ruler of darkness controlling our land, in Jesus name.",
+            "Every altar of idolatry, witchcraft, and blood-shedding in our land, catch fire and burn to ashes.",
+            "Lord, let the blood of Jesus cleanse our land from every innocent blood spilled upon it, in Jesus name.",
+            "Father, break the grip of poverty, economic collapse, and inflation over our nation, in Jesus name.",
+            "O God, arise and scatter every gang of evil men plotting civil unrest, terrorism, or war, in Jesus name.",
+            "Lord, install righteous leaders who fear You into positions of authority across our territory, in Jesus name.",
+            "Every demonic prince of Persia blocking territorial blessings and revivals, be overthrown, in Jesus name.",
+            "Father, release Your angels to patrol our borders, cities, and communities day and night, in Jesus name.",
+            "O Lord, let truth, justice, and righteousness reign supreme in our courts and government houses, in Jesus name.",
+            "Father, heal our land from plagues, epidemics, and environmental disasters, in Jesus name.",
+            "Every covenant made with darkness by ancestral leaders over our territory, break by the blood of Jesus.",
+            "Lord, open the windows of heaven and shower economic and spiritual prosperity on our land, in Jesus name.",
+            "O God, expose and dismantle all corrupt systems destroying the welfare of our citizens, in Jesus name.",
+            "Father, let the sound of praise and salvation echo through every street and city in our nation, in Jesus name.",
+            "Every spiritual veil of darkness keeping our territory in spiritual blindness, be torn off, in Jesus name.",
+            "Lord, grant peaceful co-existence, security, and safety to all residents of our land, in Jesus name.",
+            "Father, transform our territory into a fertile ground for righteous enterprise and divine visitation.",
+            "O Lord, silence the voice of evil decrees spoken against the future of our country, in Jesus name.",
+            "Father, let Your revival fire sweep across every corner of our territory without hindrance, in Jesus name.",
+            "Thank You Lord, because our land is redeemed, peaceful, prosperous, and belongs to God. Amen."
+        ]
+    },
+    {
+        "id": "gospel",
+        "name": "7. Gospel",
+        "verseRef": "Matthew 9:38 (KJV)",
+        "verseText": "Pray ye therefore the Lord of the harvest, that he will send forth labourers into his harvest.",
+        "prayers": [
+            "O Lord, let the light of the Gospel penetrate the darkest corners and unreached tribes of the earth, in Jesus name.",
+            "Father, grant missionaries and evangelists divine boldness, protection, and endurance, in Jesus name.",
+            "Every satanic barrier hindering the preaching of the Gospel, be shattered to pieces, in Jesus name.",
+            "Lord, confirm Your Word with miraculous signs, wonders, and healings wherever the Gospel is preached.",
+            "Father, open closed nations, restricted borders, and hostile hearts to the saving grace of Jesus, in Jesus name.",
+            "O God, raise bold, uncompromising evangelists to proclaim Your truth in the media and public square.",
+            "Lord, destroy every demonic ideology, philosophy, and false religion fighting the Gospel, in Jesus name.",
+            "Father, protect frontline missionaries from violence, imprisonment, and martyrdom, in Jesus name.",
+            "O Lord, release massive financial resources to fund worldwide evangelism and mission projects, in Jesus name.",
+            "Father, let every soul winning effort yield lasting fruit that remains, in Jesus name.",
+            "Lord, pour out the spirit of conviction upon sinners whenever the Gospel message is delivered, in Jesus name.",
+            "Every demonic veil blinding the minds of unbelievers from seeing Christ's light, be removed by fire.",
+            "O God, raise digital evangelists and creative minds to flood the internet with the Gospel, in Jesus name.",
+            "Father, protect the Holy Bible and sound doctrine from distortion, censorship, and corruption, in Jesus name.",
+            "Lord, let the Gospel bring deliverance, freedom, and transformation to prisoners, addicts, and the lost.",
+            "Father, unite the body of Christ for the swift completion of the Great Commission, in Jesus name.",
+            "O Lord, let Your Word run swiftly and be glorified in every culture and language, in Jesus name.",
+            "Every spirit of fear or shame in believers preventing them from sharing their faith, be cast out, in Jesus name.",
+            "Father, grant spiritual dreams and visions to those in closed countries so they may find Jesus, in Jesus name.",
+            "O God, ignite a global passion for souls that will sweep millions into Your Kingdom, in Jesus name.",
+            "Thank You Lord, because the Gospel is victorious, unstoppable, and saving lives every day. Amen."
+        ]
+    },
+    {
+        "id": "healing",
+        "name": "8. Healing",
+        "verseRef": "James 5:15 (KJV)",
+        "verseText": "And the prayer of faith shall save the sick, and the Lord shall raise him up; and if he have committed sins, they shall be forgiven him.",
+        "prayers": [
+            "O Lord, stretch forth Your healing hand and restore every sick body in our midst, in Jesus name.",
+            "By the stripes of Jesus, I command every sickness in my body to lose its power and depart, in Jesus name.",
+            "Father, let every infirmity of long standing be uprooted from its foundation, in Jesus name.",
+            "Every spirit of pain, weakness, and fever, I rebuke you by the blood of Jesus.",
+            "Lord, restore strength to every tired heart, weary mind, and fragile body, in Jesus name.",
+            "O God, let every medical report that opposes Your promise be turned into a testimony, in Jesus name.",
+            "Father, grant wisdom and skill to doctors and nurses handling the sick, in Jesus name.",
+            "Every cell, organ, and system in my body, receive the touch of God and function in divine order.",
+            "Lord, comfort the bedridden, the hospitalized, and the dying with Your presence, in Jesus name.",
+            "Father, grant patience and hope through every stage of recovery, in Jesus name.",
+            "Father, heal hidden emotional wounds and comfort the grieving, in Jesus name.",
+            "Father, strengthen caregivers and renew their compassion, in Jesus name.",
+            "Father, provide access to timely treatment and needed medicines, in Jesus name.",
+            "Father, guide surgeons and all who care for the sick, in Jesus name.",
+            "Father, restore restful sleep to those troubled by pain, in Jesus name.",
+            "Father, help us care wisely for our bodies and follow sound medical guidance, in Jesus name.",
+            "Father, surround those with chronic illness with faithful support, in Jesus name.",
+            "Father, strengthen sick children and comfort their families, in Jesus name.",
+            "Father, send companionship to those who feel forgotten in illness, in Jesus name.",
+            "Father, sustain our faith and help us rest in Your love, in Jesus name.",
+            "Thank You Lord, because by Your stripes we are healed and made whole. Amen."
+        ]
+    },
+    {
+        "id": "provision",
+        "name": "9. Provision",
+        "verseRef": "Deuteronomy 28:12 (KJV)",
+        "verseText": "The LORD shall open unto thee his good treasure, the heaven to give the rain unto thy land in his season, and to bless all the work of thine hand: and thou shalt lend unto many nations, and thou shalt not borrow.",
+        "prayers": [
+            "O Lord, supply every need in my life according to Your riches in glory, in Jesus name.",
+            "Father, open the windows of heaven and release supernatural provision upon my household, in Jesus name.",
+            "Every spirit of lack, debt, and financial struggle, depart from my life by fire, in Jesus name.",
+            "Lord, bless the works of my hands; let everything I touch prosper, in Jesus name.",
+            "Father, connect me to divine opportunities, helpers, and doors that no man can shut, in Jesus name.",
+            "Every devourer assigned to waste my income and labour, be rebuked in Jesus name.",
+            "O God, teach me to give, to save, and to steward Your resources with wisdom, in Jesus name.",
+            "Lord, turn my struggles into surplus, so that I lend and do not borrow, in Jesus name.",
+            "Every covenant of poverty over my family line, break by the blood of Jesus.",
+            "Father, open doors of honest employment for those seeking work, in Jesus name.",
+            "Father, give us useful skills and diligence in our responsibilities, in Jesus name.",
+            "Father, bless small businesses with fair partnerships, in Jesus name.",
+            "Father, grant discipline to budget wisely and meet our obligations, in Jesus name.",
+            "Father, provide food and shelter for families facing hardship, in Jesus name.",
+            "Father, help us repay what we owe with integrity, in Jesus name.",
+            "Father, protect us from fraud and reckless financial decisions, in Jesus name.",
+            "Father, teach us contentment and free us from greed, in Jesus name.",
+            "Father, make us generous toward those in need, in Jesus name.",
+            "Father, grant fruitful harvests to those who work the land, in Jesus name.",
+            "Father, let our work become a blessing to our communities, in Jesus name.",
+            "Thank You Father, because You are my Provider and I shall lack no good thing. Amen."
+        ]
+    },
+    {
+        "id": "protection",
+        "name": "10. Protection",
+        "verseRef": "Isaiah 54:17 (KJV)",
+        "verseText": "No weapon that is formed against thee shall prosper; and every tongue that shall rise against thee in judgment thou shalt condemn. This is the heritage of the servants of the LORD, and their righteousness is of me, saith the LORD.",
+        "prayers": [
+            "O Lord, be a wall of fire around me and my loved ones, in Jesus name.",
+            "Father, release Your angels to guard us in our going out and our coming in, in Jesus name.",
+            "Every arrow fired at me by day or by night, backfire now, in Jesus name.",
+            "Blood of Jesus, speak protection over my home, my car, and my workplace.",
+            "Lord, hide us in the secret place of the Most High from every evil plot, in Jesus name.",
+            "Every plan of the wicked to harm me, be exposed and brought to nothing, in Jesus name.",
+            "Father, deliver us from accident, violence, kidnapping, and sudden tragedy, in Jesus name.",
+            "O God, cover every traveller on land, air, and sea with Your mercy, in Jesus name.",
+            "Lord, let no weapon formed against us prosper, in Jesus name.",
+            "Father, give us discernment to recognize and avoid danger, in Jesus name.",
+            "Father, watch over children on their journeys to school, in Jesus name.",
+            "Father, strengthen emergency workers as they protect lives, in Jesus name.",
+            "Father, shelter families displaced by conflict and disaster, in Jesus name.",
+            "Father, protect vulnerable people from exploitation, in Jesus name.",
+            "Father, help us follow wise precautions in everyday life, in Jesus name.",
+            "Father, preserve those working through the night, in Jesus name.",
+            "Father, keep us alert to deception and online fraud, in Jesus name.",
+            "Father, guide those facing abuse toward safety and trustworthy help, in Jesus name.",
+            "Father, lead our steps away from needless conflict, in Jesus name.",
+            "Father, keep our hearts steadfast when uncertainty surrounds us, in Jesus name.",
+            "Thank You Father, for You are my refuge, my fortress, and my God. Amen."
+        ]
+    },
+    {
+        "id": "leaders",
+        "name": "11. Leaders",
+        "verseRef": "1 Timothy 2:1-2 (KJV)",
+        "verseText": "I exhort therefore, that, first of all, supplications, prayers, intercessions, and giving of thanks, be made for all men; For kings, and for all that are in authority; that we may lead a quiet and peaceable life in all godliness and honesty.",
+        "prayers": [
+            "O Lord, give every president, governor, and lawmaker a heart that fears You, in Jesus name.",
+            "Father, grant our leaders wisdom, integrity, and compassion for the people, in Jesus name.",
+            "Every spirit of corruption and greed in public office, be destroyed by fire, in Jesus name.",
+            "Lord, surround our leaders with honest counsellors and godly advisers, in Jesus name.",
+            "Father, protect leaders from assassination, betrayal, and evil manipulation, in Jesus name.",
+            "O God, let justice flow in our courts and let judges decide in truth, in Jesus name.",
+            "Lord, bless the police, army, and security agencies with courage and uprightness, in Jesus name.",
+            "Father, turn the hearts of rulers toward righteousness and peace, in Jesus name.",
+            "Lord, let our leadership bring unity, security, and prosperity to our land, in Jesus name.",
+            "Father, give leaders humility to listen and admit mistakes, in Jesus name.",
+            "Father, guide the honest management of public resources, in Jesus name.",
+            "Father, move those in authority to defend the vulnerable, in Jesus name.",
+            "Father, expose bribery and strengthen accountability, in Jesus name.",
+            "Father, grant wisdom for better education and healthcare, in Jesus name.",
+            "Father, guide leaders toward peaceful resolution of disputes, in Jesus name.",
+            "Father, raise young leaders committed to service, in Jesus name.",
+            "Father, strengthen community leaders who serve faithfully, in Jesus name.",
+            "Father, help those in authority receive correction wisely, in Jesus name.",
+            "Father, guide leaders to protect freedom of worship for all, in Jesus name.",
+            "Father, teach us to fulfill our civic responsibilities with integrity, in Jesus name.",
+            "Thank You Lord, for the king's heart is in Your hand, and You turn it as You will. Amen."
+        ]
+    },
+    {
+        "id": "deliverance",
+        "name": "12. Deliverance",
+        "verseRef": "Psalm 107:14 (KJV)",
+        "verseText": "He brought them out of darkness and the shadow of death, and brake their bands in sunder.",
+        "prayers": [
+            "O Lord, break every chain of bondage upon my life by Your mighty power, in Jesus name.",
+            "Every yoke of addiction and compulsion, be broken by the anointing, in Jesus name.",
+            "Father, deliver me from every habit, pattern, and desire that dishonours You, in Jesus name.",
+            "Every spirit of fear, torment, and anxiety, I command you to leave me now, in Jesus name.",
+            "Blood of Jesus, wash away every guilt, shame, and condemnation from my past.",
+            "Lord, set free every captive in prison, hospital, and place of oppression, in Jesus name.",
+            "Every stronghold in my mind raised against the knowledge of God, be pulled down, in Jesus name.",
+            "Father, uproot every evil seed sown in my life by the enemy, in Jesus name.",
+            "Holy Spirit, fill every space in me that darkness has vacated, in Jesus name.",
+            "Father, expose the lies we have believed and establish us in truth, in Jesus name.",
+            "Father, give us courage to seek wise help when we struggle, in Jesus name.",
+            "Father, free our hearts from bitterness and teach us forgiveness, in Jesus name.",
+            "Father, strengthen us to turn away from temptation, in Jesus name.",
+            "Father, surround us with trustworthy people who encourage freedom, in Jesus name.",
+            "Father, guide us out of destructive relationships toward safety, in Jesus name.",
+            "Father, renew our minds daily through Your word, in Jesus name.",
+            "Father, replace harmful habits with patience and self-control, in Jesus name.",
+            "Father, restore hope to those who have stumbled, in Jesus name.",
+            "Father, teach us to reject revenge and walk in mercy, in Jesus name.",
+            "Father, keep us rooted in prayer and faithful fellowship, in Jesus name.",
+            "Thank You Jesus, because I am free, and whom the Son sets free is free indeed. Amen."
+        ]
+    },
+    {
+        "id": "singles",
+        "name": "13. Singles",
+        "verseRef": "Psalm 37:4-5 (KJV)",
+        "verseText": "Delight thyself also in the LORD; and he shall give thee the desires of thine heart. Commit thy way unto the LORD; trust also in him; and he shall bring it to pass.",
+        "prayers": [
+            "O Lord, prepare every single believer for the godly partner You have ordained, in Jesus name.",
+            "Father, lead my steps to the right spouse at the right time, in Jesus name.",
+            "Every delay, disappointment, or hindrance to godly marriage, be removed by fire, in Jesus name.",
+            "Lord, guard the hearts of singles from wrong relationships and emotional wounds, in Jesus name.",
+            "Father, keep every unmarried believer pure in body, mind, and spirit, in Jesus name.",
+            "Every marital covenant or spiritual spouse fighting my destiny, be cancelled by the blood of Jesus.",
+            "O God, heal the loneliness of those waiting and fill them with Your joy, in Jesus name.",
+            "Lord, let single men and women grow in purpose, maturity, and godly character, in Jesus name.",
+            "Father, bring the right partners together to build homes that glorify You, in Jesus name.",
+            "Father, help every single believer know their worth in Christ, in Jesus name.",
+            "Father, grant discernment to recognize character beyond appearances, in Jesus name.",
+            "Father, teach us to build friendships marked by respect, in Jesus name.",
+            "Father, heal past rejection and restore confidence, in Jesus name.",
+            "Father, help us establish healthy boundaries in relationships, in Jesus name.",
+            "Father, grant wisdom in discussing faith and future family life, in Jesus name.",
+            "Father, help those awaiting marriage live with purpose and joy, in Jesus name.",
+            "Father, surround unmarried believers with supportive community, in Jesus name.",
+            "Father, help us recognize abuse and seek safety, in Jesus name.",
+            "Father, grow in us patience and gracious communication, in Jesus name.",
+            "Father, make this season fruitful in service and personal growth, in Jesus name.",
+            "Thank You Lord, for You make everything beautiful in its time. Amen."
+        ]
+    },
+    {
+        "id": "students",
+        "name": "14. Students",
+        "verseRef": "James 1:5 (KJV)",
+        "verseText": "If any of you lack wisdom, let him ask of God, that giveth to all men liberally, and upbraideth not; and it shall be given him.",
+        "prayers": [
+            "O Lord, give every student a sharp mind, a strong memory, and a hunger to learn, in Jesus name.",
+            "Father, release the spirit of wisdom and understanding upon all learners, in Jesus name.",
+            "Every spirit of confusion, forgetfulness, and examination failure, depart, in Jesus name.",
+            "Lord, grant students favour before teachers, examiners, and school authorities, in Jesus name.",
+            "Father, protect every school from cultism, violence, and corrupt influences, in Jesus name.",
+            "O God, supply school fees, books, and every resource students need, in Jesus name.",
+            "Lord, guard our students from drugs, immorality, and wrong friends, in Jesus name.",
+            "Every academic delay or frustration, be removed so that students graduate on time, in Jesus name.",
+            "Father, raise students who excel in knowledge and in godly character, in Jesus name.",
+            "Father, help students manage their time and study diligently, in Jesus name.",
+            "Father, give learners courage to ask questions and seek help, in Jesus name.",
+            "Father, provide suitable support for students with learning difficulties, in Jesus name.",
+            "Father, keep students honest in assignments and examinations, in Jesus name.",
+            "Father, grant teachers patience and clarity as they teach, in Jesus name.",
+            "Father, calm examination anxiety and strengthen concentration, in Jesus name.",
+            "Father, protect students from bullying and isolation, in Jesus name.",
+            "Father, guide learners toward courses suited to their gifts, in Jesus name.",
+            "Father, provide scholarships for those facing financial barriers, in Jesus name.",
+            "Father, help students balance study with rest and healthy friendships, in Jesus name.",
+            "Father, let their learning become a blessing to others, in Jesus name.",
+            "Thank You Lord, because You give knowledge and skill in all learning and wisdom. Amen."
+        ]
+    },
+    {
+        "id": "peace",
+        "name": "15. Peace",
+        "verseRef": "Philippians 4:6-7 (KJV)",
+        "verseText": "Be careful for nothing; but in every thing by prayer and supplication with thanksgiving let your requests be made known unto God. And the peace of God, which passeth all understanding, shall keep your hearts and minds through Christ Jesus.",
+        "prayers": [
+            "O Lord, fill my heart with Your perfect peace in every storm, in Jesus name.",
+            "Every spirit of anxiety, worry, and restlessness, I cast you out by the blood of Jesus.",
+            "Father, heal every troubled mind and calm every racing thought, in Jesus name.",
+            "Lord, grant me peaceful sleep and rest without fear in the night, in Jesus name.",
+            "Every spirit of depression and heaviness, lift off my life now, in Jesus name.",
+            "Father, let Your joy be my strength when I am weak, in Jesus name.",
+            "Holy Spirit, remind me daily to cast all my cares upon You, in Jesus name.",
+            "O God, bring peace into every troubled home, workplace, and relationship, in Jesus name.",
+            "Lord, keep my mind fixed on You and not on my fears, in Jesus name.",
+            "Father, teach me to pause and seek Your presence before reacting, in Jesus name.",
+            "Father, help me release what I cannot control, in Jesus name.",
+            "Father, grant patience when answers are delayed, in Jesus name.",
+            "Father, surround overwhelmed people with compassionate support, in Jesus name.",
+            "Father, guide me to wise counsel when distress is hard to carry, in Jesus name.",
+            "Father, replace harsh self-criticism with assurance of Your mercy, in Jesus name.",
+            "Father, free my heart from resentment through forgiveness, in Jesus name.",
+            "Father, give me wisdom to set healthy boundaries and rest, in Jesus name.",
+            "Father, help me speak gently and become a peacemaker, in Jesus name.",
+            "Father, comfort those grieving and sustain them day by day, in Jesus name.",
+            "Father, establish gratitude in my heart each morning, in Jesus name.",
+            "Thank You Lord, for the peace that passes understanding now guards my heart and mind. Amen."
+        ]
+    }
 ];
 
 let list = [], ci = 0, pi = 0, speaking = false;
@@ -475,7 +639,7 @@ document.addEventListener('keydown', e => {
   if(e.key==='ArrowLeft') navigate(-1);
 });
 
-$('sub').textContent = `${categoriesData.length} prayer groups, each with its own scripture (KJV)`;
+$('sub').textContent = `${categoriesData.length} prayer groups • 21 prayer points each • KJV scriptures`;
 selectCategory(0);
 </script>
 </body>
