@@ -8,87 +8,77 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400;1,6..72,500&family=Familjen+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-/* Stained-glass idea: every prayer group has its own jewel colour (--h) that tints the whole page. */
 :root{--h:210;--stone:#e8ecee;--ink:#101a2e;--muted:#5b6678;--gold:#b98a1f;
   --accent:hsl(var(--h) 58% 30%);--deep:hsl(var(--h) 55% 17%);--tint:hsl(var(--h) 45% 95%);--line:hsl(var(--h) 25% 80%)}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Familjen Grotesk',system-ui,sans-serif;color:var(--ink);min-height:100vh;display:flex;flex-direction:column;
-  background:linear-gradient(180deg,hsl(var(--h) 40% 90%),var(--stone) 320px);transition:background .5s}
-.wrap{width:min(760px,100% - 1.6rem);margin-inline:auto}
-header{text-align:center;padding:1.8rem 0 1rem}
-h1{font:600 clamp(2.2rem,8vw,3.4rem)/1 'Newsreader',serif;letter-spacing:-.01em;color:var(--deep)}
-.credit{display:inline-block;margin-top:.55rem;font-weight:700;font-size:.9rem;letter-spacing:.04em;
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%;height:100%}
+/* App-shell: the whole app fits one phone screen, nothing scrolls except long text inside its card */
+body{font-family:'Familjen Grotesk',system-ui,sans-serif;color:var(--ink);height:100vh;height:100dvh;overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;
+  background:linear-gradient(180deg,hsl(var(--h) 40% 90%),var(--stone) 260px);transition:background .5s;
+  padding:env(safe-area-inset-top) 0 0}
+.wrap{width:100%;max-width:640px;padding-inline:12px}
+header{text-align:center;padding:.55rem 12px .15rem;flex:none}
+h1{font:600 1.55rem/1.1 'Newsreader',serif;letter-spacing:-.01em;color:var(--deep)}
+.credit{display:inline-block;margin-top:.15rem;font-weight:700;font-size:.74rem;letter-spacing:.04em;
   background:linear-gradient(90deg,#8a6112,#e3b84a,#8a6112);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;animation:shine 6s linear infinite}
 @keyframes shine{to{background-position:200% 0}}
-.sub{color:var(--muted);font-size:.85rem;margin-top:.2rem}
-.chips{display:flex;gap:.45rem;overflow-x:auto;padding:.5rem .1rem .8rem;scrollbar-width:none;scroll-snap-type:x proximity}
+.sub{display:none}
+.chips{flex:none;display:flex;gap:.4rem;overflow-x:auto;padding:.4rem 0 .5rem;scrollbar-width:none;scroll-snap-type:x proximity;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
 .chips::-webkit-scrollbar{display:none}
-@media(min-width:720px){.chips{flex-wrap:wrap;justify-content:center;overflow:visible}}
-.chip{flex:none;scroll-snap-align:center;display:flex;align-items:center;gap:.45rem;cursor:pointer;font:600 .82rem 'Familjen Grotesk';
-  color:var(--ink);background:#ffffffb0;border:1px solid var(--line);border-radius:10px;padding:.5rem .8rem;transition:.2s}
-.chip i{width:.7rem;height:.7rem;border-radius:50%;background:hsl(var(--c) 60% 38%)}
-.chip:hover{background:#fff}
+.chip{flex:none;scroll-snap-align:center;display:flex;align-items:center;gap:.4rem;cursor:pointer;font:600 .78rem 'Familjen Grotesk';
+  color:var(--ink);background:#ffffffb0;border:1px solid var(--line);border-radius:999px;padding:.45rem .75rem;min-height:38px;white-space:nowrap;transition:.2s}
+.chip i{width:.6rem;height:.6rem;border-radius:50%;background:hsl(var(--c) 60% 38%)}
 .chip[aria-pressed=true]{background:hsl(var(--c) 58% 26%);border-color:transparent;color:#fff}
 .chip[aria-pressed=true] i{background:hsl(var(--c) 80% 78%)}
 button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-.window{margin-top:.6rem;background:var(--tint);border:2px solid var(--accent);border-radius:170px 170px 18px 18px;
-  padding:3.2rem clamp(1.2rem,6vw,3.2rem) 1.8rem;text-align:center;box-shadow:inset 0 0 0 6px var(--tint),inset 0 0 0 7px var(--line)}
-.window .group{font-weight:700;font-size:.95rem;color:var(--accent)}
-#vtext{font:italic 400 clamp(1.25rem,3.8vw,1.6rem)/1.55 'Newsreader',serif;margin:.7rem 0 .8rem;color:var(--ink)}
-#vref{font-weight:700;font-size:.85rem;color:var(--muted)}
-.panel{margin-top:1rem;background:var(--deep);color:#f4f1e8;border-radius:18px;overflow:hidden;transition:background .5s}
-.bar{height:5px;background:#ffffff22}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#e3b84a,#fff1c2);transition:width .35s}
-.body{padding:1.6rem clamp(1.2rem,5vw,2.4rem) 1.2rem}
-#pnum{font-weight:600;font-size:.85rem;color:#e3b84a}
-#ptext{font:400 clamp(1.5rem,5vw,2.1rem)/1.45 'Newsreader',serif;margin-top:.6rem;min-height:9.5rem;transition:opacity .25s,transform .25s}
+
+main{flex:1;min-height:0;display:flex;flex-direction:column;gap:.55rem;padding-bottom:max(10px,env(safe-area-inset-bottom))}
+/* Verse card: 3 lines, tap to expand */
+.window{flex:none;background:var(--tint);border:1.5px solid var(--accent);border-radius:16px;padding:.6rem .85rem .55rem;text-align:center;cursor:pointer;position:relative}
+.window .group{font-weight:700;font-size:.78rem;color:var(--accent);text-transform:capitalize}
+#vtext{font:italic 400 .95rem/1.4 'Newsreader',serif;margin:.25rem 0 .2rem;color:var(--ink);
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.window.open{max-height:38dvh;overflow-y:auto}
+.window.open #vtext{-webkit-line-clamp:unset;display:block}
+#vref{font-weight:700;font-size:.72rem;color:var(--muted)}
+.more{font-size:.66rem;font-weight:700;color:var(--accent);opacity:.8;margin-top:.1rem}
+
+.panel{flex:1;min-height:0;display:flex;flex-direction:column;background:var(--deep);color:#f4f1e8;border-radius:18px;overflow:hidden;transition:background .5s}
+.bar{flex:none;height:5px;background:#ffffff22}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#e3b84a,#fff1c2);transition:width .35s}
+.body{flex:1;min-height:0;overflow-y:auto;padding:.9rem 1rem;display:flex;flex-direction:column;-webkit-overflow-scrolling:touch}
+#pnum{flex:none;font-weight:600;font-size:.78rem;color:#e3b84a}
+#ptext{margin:auto 0;padding:.6rem 0;font:400 clamp(1.3rem,5.6vw,1.8rem)/1.45 'Newsreader',serif;transition:opacity .25s,transform .25s;overflow-wrap:anywhere}
 #ptext.swap{opacity:0;transform:translateY(8px)}
-.ctrl{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;padding:0 clamp(1.2rem,5vw,2.4rem) 1.4rem}
-.btn{display:inline-flex;align-items:center;gap:.5rem;font:700 .92rem 'Familjen Grotesk';cursor:pointer;border-radius:12px;padding:.7rem 1.1rem;
+/* Thumb-reach control bar pinned to the bottom of the card */
+.ctrl{flex:none;display:grid;grid-template-columns:1fr 1fr 1fr 1.3fr;gap:.45rem;padding:.6rem .6rem .7rem;background:#00000026}
+.sp{display:contents}
+.btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.1rem;min-height:52px;min-width:0;
+  font:700 .74rem 'Familjen Grotesk';cursor:pointer;border-radius:12px;padding:.35rem .2rem;line-height:1.15;text-align:center;
   border:1px solid #ffffff40;background:transparent;color:#f4f1e8;transition:.2s}
-.btn:hover:not(:disabled){background:#ffffff1c}
+.btn .ic{font-size:1.15rem;line-height:1}
+.btn:active:not(:disabled){background:#ffffff1c}
 .btn:disabled{opacity:.35;cursor:not-allowed}
 .btn.gold{background:#e3b84a;border-color:#e3b84a;color:#241a05}
-.btn.gold:hover:not(:disabled){background:#f1cb6a}
-.sp{margin-left:auto;display:flex;gap:.6rem}
-footer{margin-top:auto;text-align:center;padding:1.6rem 0 1.2rem;font-size:.78rem;color:var(--muted)}
+#next{background:#fff;color:var(--deep);border-color:#fff}
+#next:disabled{background:transparent;color:#f4f1e8;border-color:#ffffff40}
+footer{display:none}
+
+/* Very short screens (small phones / landscape) */
+@media(max-height:620px){
+  h1{font-size:1.25rem}.credit{display:none}
+  #vtext{-webkit-line-clamp:2;font-size:.88rem}
+  .btn{min-height:44px}.btn .ic{display:none}
+}
+@media(min-width:720px){
+  body{justify-content:flex-start}
+  h1{font-size:2rem}.credit{font-size:.9rem}
+  #vtext{font-size:1.1rem}
+  #ptext{font-size:1.9rem}
+  main{padding-bottom:16px}
+}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-
-/* Responsive sizing: retain natural vertical scrolling and readable text. */
-html { width:100%; min-width:0; -webkit-text-size-adjust:100%; }
-body { width:100%; min-width:0; min-height:100vh; min-height:100dvh; }
-.wrap { width:calc(100% - 24px); max-width:760px; min-width:0; }
-main, section, nav, .body, .ctrl, .sp { min-width:0; }
-h1, .credit, .sub, #gname, #vtext, #vref, #ptext, footer { overflow-wrap:anywhere; }
-.chips { max-width:100%; overscroll-behavior-x:contain; -webkit-overflow-scrolling:touch; }
-.btn { min-height:44px; justify-content:center; white-space:normal; }
-footer { padding-bottom:max(1.2rem, env(safe-area-inset-bottom)); }
-@media(max-width:719px) {
- header { padding-top:1.15rem; padding-bottom:.65rem; }
- h1 { font-size:clamp(1.9rem,8vw,3rem); line-height:1.12; }
- .credit { font-size:.82rem; }
- .sub { font-size:.78rem; line-height:1.45; }
- .chips { gap:.4rem; padding-bottom:.6rem; }
- .chip { min-height:44px; padding:.5rem .65rem; font-size:.8rem; }
- .window { margin-top:.3rem; border-radius:72px 72px 16px 16px; padding:2rem 1rem 1.2rem; }
- #vtext { font-size:clamp(1.05rem,4.5vw,1.4rem); line-height:1.5; }
- #vref { font-size:.78rem; line-height:1.4; }
- .panel { margin-top:.8rem; border-radius:15px; }
- .body { padding:1.1rem 1rem; }
- #ptext { font-size:clamp(1.25rem,5.3vw,1.75rem); line-height:1.45; min-height:0; }
- .ctrl { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.55rem; padding:0 1rem 1rem; }
- .ctrl > .btn { width:100%; }
- .sp { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.55rem; grid-column:1 / -1; margin-left:0; width:100%; }
- .btn { padding:.65rem .45rem; font-size:.86rem; }
- footer { font-size:.72rem; line-height:1.5; padding-left:12px; padding-right:12px; }
-}
-@media(max-width:350px) {
- .wrap { width:calc(100% - 16px); }
- .window { border-radius:52px 52px 14px 14px; padding:1.6rem .8rem 1rem; }
- .body { padding:1rem .8rem; }
- .ctrl { padding:0 .8rem .8rem; }
-}
-
 </style>
 </head>
 <body>
@@ -98,33 +88,30 @@ footer { padding-bottom:max(1.2rem, env(safe-area-inset-bottom)); }
   <p class="sub" id="sub"></p>
 </header>
 
-<main class="wrap">
-  <nav class="chips" id="chips" aria-label="Prayer groups"></nav>
+<div class="wrap" style="flex:none"><nav class="chips" id="chips" aria-label="Prayer groups"></nav></div>
 
-  <section class="window" aria-live="polite">
+<main class="wrap">
+  <section class="window" id="verse" aria-live="polite" onclick="this.classList.toggle('open');$('more').textContent=this.classList.contains('open')?'Tap to collapse':'Tap to read full verse'">
     <div class="group" id="gname"></div>
     <p id="vtext"></p>
     <div id="vref"></div>
+    <div class="more" id="more">Tap to read full verse</div>
   </section>
 
-  <section class="panel">
+  <section class="panel" id="panel">
     <div class="bar"><i id="fill"></i></div>
     <div class="body">
       <div id="pnum"></div>
       <p id="ptext"></p>
     </div>
     <div class="ctrl">
-      <button class="btn gold" id="listen" onclick="toggleAudio()"><span id="lt">Listen</span></button>
-      <button class="btn" onclick="reshuffle()" title="Shuffle the order of prayers">Shuffle</button>
-      <div class="sp">
-        <button class="btn" id="prev" onclick="navigate(-1)">Previous</button>
-        <button class="btn" id="next" onclick="navigate(1)">Next</button>
-      </div>
+      <button class="btn" id="prev" onclick="navigate(-1)"><span class="ic">&#8249;</span>Previous</button>
+      <button class="btn gold" id="listen" onclick="toggleAudio()"><span class="ic">&#128266;</span><span id="lt">Listen</span></button>
+      <button class="btn" onclick="reshuffle()" title="Shuffle the order of prayers"><span class="ic">&#128256;</span>Shuffle</button>
+      <button class="btn" id="next" onclick="navigate(1)">Next</button>
     </div>
   </section>
 </main>
-
-<footer>Prayer Machine &bull; Programmed by ThankGod Okoduwa</footer>
 
 <script>
 const categoriesData = [
@@ -595,6 +582,7 @@ function selectCategory(i){
   $('gname').textContent = 'Prayers for ' + clean(c.name).toLowerCase();
   $('vtext').textContent = '\u201C' + c.verseText + '\u201D';
   $('vref').textContent = c.verseRef;
+  $('verse').classList.remove('open'); $('more').textContent='Tap to read full verse';
   renderChips(); show(false);
 }
 
@@ -605,7 +593,8 @@ function show(animate=true){
     $('ptext').textContent = list[pi];
     $('fill').style.width = ((pi+1)/list.length*100) + '%';
     $('prev').disabled = pi===0 && ci===0;
-    $('next').textContent = pi===list.length-1 ? (ci<categoriesData.length-1 ? 'Next group' : 'Finish') : 'Next';
+    $('next').innerHTML = '<span class="ic">'+(pi===list.length-1 ? (ci<categoriesData.length-1 ? '&#187;' : '&#10003;') : '&#8250;')+'</span>' + (pi===list.length-1 ? (ci<categoriesData.length-1 ? 'Next group' : 'Finish') : 'Next');
+    $('panel').querySelector('.body').scrollTop = 0;
     $('next').disabled = pi===list.length-1 && ci===categoriesData.length-1;
     $('ptext').classList.remove('swap');
   };
@@ -638,6 +627,11 @@ document.addEventListener('keydown', e => {
   if(e.key==='ArrowRight') navigate(1);
   if(e.key==='ArrowLeft') navigate(-1);
 });
+
+let tx=0,ty=0;
+$('panel').addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY;},{passive:true});
+$('panel').addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;
+  if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5) navigate(dx<0?1:-1);},{passive:true});
 
 $('sub').textContent = `${categoriesData.length} prayer groups • 21 prayer points each • KJV scriptures`;
 selectCategory(0);
